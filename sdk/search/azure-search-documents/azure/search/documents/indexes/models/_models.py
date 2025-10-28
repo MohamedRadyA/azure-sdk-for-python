@@ -1071,7 +1071,7 @@ class SearchIndexerDataSourceConnection(_serialization.Model):  # pylint: disabl
     :ivar description: The description of the datasource connection.
     :vartype description: str
     :ivar type: Required. The type of the datasource connection. Possible values include: "azuresql",
-     "cosmosdb", "azureblob", "azuretable", "mysql", "adlsgen2".
+     "cosmosdb", "azureblob", "azuretable", "mysql", "adlsgen2", "onelake", "sharepoint".
     :vartype type: str or ~azure.search.documents.indexes.models.SearchIndexerDataSourceType
     :ivar connection_string: The connection string for the datasource connection.
     :vartype connection_string: str

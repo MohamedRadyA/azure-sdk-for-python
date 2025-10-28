@@ -24,6 +24,6 @@
 #
 # --------------------------------------------------------------------------
 
-from ._agent_client import KnowledgeAgentRetrievalClient
+from ._knowledgebase_client import KnowledgeBaseRetrievalClient
 
-__all__ = ("KnowledgeAgentRetrievalClient",)
+__all__ = ("KnowledgeBaseRetrievalClient",)

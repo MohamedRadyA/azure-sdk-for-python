@@ -24,6 +24,6 @@
 #
 # --------------------------------------------------------------------------
 
-from ._agent_client_async import KnowledgeAgentRetrievalClient
+from ._knowledgebase_client_async import KnowledgeBaseRetrievalClient
 
-__all__ = ("KnowledgeAgentRetrievalClient",)
+__all__ = ("KnowledgeBaseRetrievalClient",)
