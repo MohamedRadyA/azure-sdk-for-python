@@ -1,31 +1,89 @@
-# pylint: disable=line-too-long,useless-suppression
-# ------------------------------------
-# Copyright (c) Microsoft Corporation.
-# Licensed under the MIT License.
-# ------------------------------------
+# coding=utf-8
+# --------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for license information.
+# --------------------------------------------------------------------------
 """Customize generated code here.
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
-import os
-import re
-import logging
-from typing import Any, Tuple, Optional
+import os, re, logging
 from pathlib import Path
 from urllib.parse import urlsplit
-from azure.storage.blob.aio import ContainerClient
+from typing import Any, List, Optional, AsyncIterable, Tuple, Union
+from azure.core.exceptions import ResourceNotFoundError
 from azure.core.tracing.decorator_async import distributed_trace_async
-
-from ._operations import DatasetsOperations as DatasetsOperationsGenerated
+from azure.storage.blob.aio import ContainerClient
 from ...models._models import (
+    Connection,
+    ApiKeyCredentials,
     FileDatasetVersion,
     FolderDatasetVersion,
     PendingUploadRequest,
     PendingUploadResponse,
     PendingUploadType,
 )
+from ...models._enums import ConnectionType
+from ._operations import DatasetsOperations as DatasetsOperationsGenerated
+from ._operations import ConnectionsOperations as ConnectionsOperationsGenerated
 
 logger = logging.getLogger(__name__)
+
+
+class TelemetryOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.ai.projects.aio.AIProjectClient`'s
+        :attr:`telemetry` attribute.
+    """
+
+    _connection_string: Optional[str] = None
+
+    def __init__(self, outer_instance: "azure.ai.projects.aio.AIProjectClient") -> None:  # type: ignore[name-defined]
+        self._outer_instance = outer_instance
+
+    @distributed_trace_async
+    async def get_application_insights_connection_string(self) -> str:  # pylint: disable=name-too-long
+        """Get the Application Insights connection string associated with the Project's Application Insights resource.
+
+        :return: The Application Insights connection string if a the resource was enabled for the Project.
+        :rtype: str
+        :raises ~azure.core.exceptions.ResourceNotFoundError: An Application Insights connection does not
+            exist for this Foundry project.
+        """
+        if not self._connection_string:
+
+            # TODO: Two REST APIs calls can be replaced by one if we have had REST API for get_with_credentials(connection_type=ConnectionType.APPLICATION_INSIGHTS)
+            # Returns an empty Iterable if no connections exits.
+            connections: AsyncIterable[Connection] = self._outer_instance.connections.list(
+                connection_type=ConnectionType.APPLICATION_INSIGHTS,
+            )
+
+            # Note: there can't be more than one AppInsights connection.
+            connection_name: Optional[str] = None
+            async for connection in connections:
+                connection_name = connection.name
+                break
+            if not connection_name:
+                raise ResourceNotFoundError("No Application Insights connection found.")
+
+            connection = (
+                await self._outer_instance.connections._get_with_credentials(  # pylint: disable=protected-access
+                    name=connection_name
+                )
+            )
+
+            if isinstance(connection.credentials, ApiKeyCredentials):
+                if not connection.credentials.api_key:
+                    raise ValueError("Application Insights connection does not have a connection string.")
+                self._connection_string = connection.credentials.api_key
+            else:
+                raise ValueError("Application Insights connection does not use API Key credentials.")
+
+        return self._connection_string
 
 
 class DatasetsOperations(DatasetsOperationsGenerated):
@@ -220,3 +278,77 @@ class DatasetsOperations(DatasetsOperationsGenerated):
             )
 
         return dataset_version  # type: ignore
+
+
+class ConnectionsOperations(ConnectionsOperationsGenerated):
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.ai.projects.aio.AIProjectClient`'s
+        :attr:`connections` attribute.
+    """
+
+    @distributed_trace_async
+    async def get(self, name: str, *, include_credentials: Optional[bool] = False, **kwargs: Any) -> Connection:
+        """Get a connection by name.
+
+        :param name: The name of the resource. Required.
+        :type name: str
+        :keyword include_credentials: Whether to include credentials in the response. Default is False.
+        :paramtype include_credentials: bool
+        :return: Connection. The Connection is compatible with MutableMapping
+        :rtype: ~azure.ai.projects.models.Connection
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+        if include_credentials:
+            connection = await super()._get_with_credentials(name, **kwargs)
+            if connection.type == ConnectionType.CUSTOM:
+                # Why do we do this? See comment in the sync version of this code (file _patch_connections.py).
+                setattr(
+                    connection.credentials,
+                    "credential_keys",
+                    {k: v for k, v in connection.credentials.as_dict().items() if k != "type"},
+                )
+
+            return connection
+
+        return await super()._get(name, **kwargs)
+
+    @distributed_trace_async
+    async def get_default(
+        self, connection_type: Union[str, ConnectionType], *, include_credentials: Optional[bool] = False, **kwargs: Any
+    ) -> Connection:
+        """Get the default connection for a given connection type.
+
+        :param connection_type: The type of the connection. Required.
+        :type connection_type: str or ~azure.ai.projects.models.ConnectionType
+        :keyword include_credentials: Whether to include credentials in the response. Default is False.
+        :paramtype include_credentials: bool
+        :return: Connection. The Connection is compatible with MutableMapping
+        :rtype: ~azure.ai.projects.models.Connection
+        :raises ValueError: If no default connection is found for the given type.
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        connections = super().list(connection_type=connection_type, default_connection=True, **kwargs)
+        async for connection in connections:
+            return await self.get(connection.name, include_credentials=include_credentials, **kwargs)
+        raise ValueError(f"No default connection found for type: {connection_type}.")
+
+
+__all__: List[str] = [
+    "TelemetryOperations",
+    "DatasetsOperations",
+    "ConnectionsOperations",
+]  # Add all objects you want publicly available to users at this package level
+
+
+def patch_sdk():
+    """Do not remove from this file.
+
+    `patch_sdk` is a last resort escape hatch that allows you to do customizations
+    you can't accomplish using the techniques described in
+    https://aka.ms/azsdk/python/dpcodegen/python/customize
+    """

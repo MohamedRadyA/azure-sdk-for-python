@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression
 # ------------------------------------
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
@@ -7,11 +6,13 @@
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
+from typing import List, Dict
 from enum import Enum
-
+from ._models import CustomCredential as CustomCredentialGenerated
 from azure.core import CaseInsensitiveEnumMeta
 
 
+# TODO: Are these needed?
 class EvaluatorIds(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     RELEVANCE = "azureai://built-in/evaluators/relevance"
     HATE_UNFAIRNESS = "azureai://built-in/evaluators/hate_unfairness"
@@ -46,3 +47,31 @@ class EvaluatorIds(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     TEXT_SIMILARITY_GRADER = "azureai://built-in/evaluators/azure-openai/text_similarity_grader"
     GENERAL_GRADER = "azureai://built-in/evaluators/azure-openai/custom_grader"
     SCORE_MODEL_GRADER = "azureai://built-in/evaluators/azure-openai/score_model_grader"
+
+
+class CustomCredential(CustomCredentialGenerated):
+    """Custom credential definition.
+
+    :ivar type: The credential type. Always equals CredentialType.CUSTOM. Required.
+    :vartype type: str or ~azure.ai.projects.models.CredentialType
+    :ivar credential_keys: The secret custom credential keys. Required.
+    :vartype credential_keys: dict[str, str]
+    """
+
+    credential_keys: Dict[str, str] = {}
+    """The secret custom credential keys. Required."""
+
+
+__all__: List[str] = [
+    "EvaluatorIds",
+    "CustomCredential",
+]  # Add all objects you want publicly available to users at this package level
+
+
+def patch_sdk():
+    """Do not remove from this file.
+
+    `patch_sdk` is a last resort escape hatch that allows you to do customizations
+    you can't accomplish using the techniques described in
+    https://aka.ms/azsdk/python/dpcodegen/python/customize
+    """

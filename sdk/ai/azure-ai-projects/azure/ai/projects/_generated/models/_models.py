@@ -99,7 +99,7 @@ class A2ATool(Tool, discriminator="a2a_preview"):
     """An agent implementing the A2A protocol.
 
     :ivar type: The type of the tool. Always ``a2a``. Required.
-    :vartype type: str or ~azure.ai.projects.models.A2_A_PREVIEW
+    :vartype type: str or ~azure.ai.projects._generated.models.A2_A_PREVIEW
     :ivar base_url: Base URL of the agent.
     :vartype base_url: str
     :ivar agent_card_path: The path to the agent card relative to the ``base_url``.
@@ -182,9 +182,9 @@ class AgentClusterInsightResult(InsightResult, discriminator="AgentClusterInsigh
     """Insights from the agent cluster analysis.
 
     :ivar type: The type of insights result. Required. Cluster Insight on an Agent.
-    :vartype type: str or ~azure.ai.projects.models.AGENT_CLUSTER_INSIGHT
+    :vartype type: str or ~azure.ai.projects._generated.models.AGENT_CLUSTER_INSIGHT
     :ivar cluster_insight: Required.
-    :vartype cluster_insight: ~azure.ai.projects.models.ClusterInsightResult
+    :vartype cluster_insight: ~azure.ai.projects._generated.models.ClusterInsightResult
     """
 
     type: Literal[InsightType.AGENT_CLUSTER_INSIGHT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -251,11 +251,11 @@ class AgentClusterInsightsRequest(InsightRequest, discriminator="AgentClusterIns
     """Insights on set of Agent Evaluation Results.
 
     :ivar type: The type of request. Required. Cluster Insight on an Agent.
-    :vartype type: str or ~azure.ai.projects.models.AGENT_CLUSTER_INSIGHT
+    :vartype type: str or ~azure.ai.projects._generated.models.AGENT_CLUSTER_INSIGHT
     :ivar agent_name: Identifier for the agent. Required.
     :vartype agent_name: str
     :ivar model_configuration: Configuration of the model used in the insight generation.
-    :vartype model_configuration: ~azure.ai.projects.models.InsightModelConfiguration
+    :vartype model_configuration: ~azure.ai.projects._generated.models.InsightModelConfiguration
     """
 
     type: Literal[InsightType.AGENT_CLUSTER_INSIGHT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -399,9 +399,9 @@ class AgentContainerOperationObject(_Model):
      "InProgress", "Succeeded", and "Failed".
     :vartype status: str or ~azure.ai.projects.models.AgentContainerOperationStatus
     :ivar error: The error of the container operation, if any.
-    :vartype error: ~azure.ai.projects.models.AgentContainerOperationError
+    :vartype error: ~azure.ai.projects._generated.models.AgentContainerOperationError
     :ivar container: The container of the specific version of an agent.
-    :vartype container: ~azure.ai.projects.models.AgentContainerObject
+    :vartype container: ~azure.ai.projects._generated.models.AgentContainerObject
     """
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -456,7 +456,7 @@ class AgentDefinition(_Model):
     :ivar kind: Required. Known values are: "prompt", "hosted", "container_app", and "workflow".
     :vartype kind: str or ~azure.ai.projects.models.AgentKind
     :ivar rai_config: Configuration for Responsible AI (RAI) content filtering and safety features.
-    :vartype rai_config: ~azure.ai.projects.models.RaiConfig
+    :vartype rai_config: ~azure.ai.projects._generated.models.RaiConfig
     """
 
     __mapping__: dict[str, _Model] = {}
@@ -523,7 +523,7 @@ class AgenticIdentityCredentials(BaseCredentials, discriminator="AgenticIdentity
     """Agentic identity credential definition.
 
     :ivar type: The credential type. Required. Agentic identity credential
-    :vartype type: str or ~azure.ai.projects.models.AGENTIC_IDENTITY
+    :vartype type: str or ~azure.ai.projects._generated.models.AGENTIC_IDENTITY
     """
 
     type: Literal[CredentialType.AGENTIC_IDENTITY] = rest_discriminator(name="type", visibility=["read"])  # type: ignore
@@ -594,7 +594,7 @@ class AgentObject(_Model):
     :ivar name: The name of the agent. Required.
     :vartype name: str
     :ivar versions: The latest version of the agent. Required.
-    :vartype versions: ~azure.ai.projects.models.AgentObjectVersions
+    :vartype versions: ~azure.ai.projects._generated.models.AgentObjectVersions
     """
 
     object: Literal["agent"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -631,7 +631,7 @@ class AgentObjectVersions(_Model):
     """AgentObjectVersions.
 
     :ivar latest: Required.
-    :vartype latest: ~azure.ai.projects.models.AgentVersionObject
+    :vartype latest: ~azure.ai.projects._generated.models.AgentVersionObject
     """
 
     latest: "_models.AgentVersionObject" = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -730,9 +730,9 @@ class AgentTaxonomyInput(EvaluationTaxonomyInput, discriminator="agent"):
     """Input configuration for the evaluation taxonomy when the input type is agent.
 
     :ivar type: Input type of the evaluation taxonomy. Required. Agent
-    :vartype type: str or ~azure.ai.projects.models.AGENT
+    :vartype type: str or ~azure.ai.projects._generated.models.AGENT
     :ivar target: Target configuration for the agent. Required.
-    :vartype target: ~azure.ai.projects.models.AzureAIAgentTarget
+    :vartype target: ~azure.ai.projects._generated.models.AzureAIAgentTarget
     :ivar risk_categories: List of risk categories to evaluate against. Required.
     :vartype risk_categories: list[str or ~azure.ai.projects.models.RiskCategory]
     """
@@ -792,7 +792,7 @@ class AgentVersionObject(_Model):
     :ivar created_at: The Unix timestamp (seconds) when the agent was created. Required.
     :vartype created_at: ~datetime.datetime
     :ivar definition: Required.
-    :vartype definition: ~azure.ai.projects.models.AgentDefinition
+    :vartype definition: ~azure.ai.projects._generated.models.AgentDefinition
     """
 
     metadata: dict[str, str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -945,7 +945,7 @@ class AnnotationFileCitation(Annotation, discriminator="file_citation"):
     """A citation to a file.
 
     :ivar type: The type of the file citation. Always ``file_citation``. Required.
-    :vartype type: str or ~azure.ai.projects.models.FILE_CITATION
+    :vartype type: str or ~azure.ai.projects._generated.models.FILE_CITATION
     :ivar file_id: The ID of the file. Required.
     :vartype file_id: str
     :ivar index: The index of the file in the list of files. Required.
@@ -988,7 +988,7 @@ class AnnotationFilePath(Annotation, discriminator="file_path"):
     """A path to a file.
 
     :ivar type: The type of the file path. Always ``file_path``. Required.
-    :vartype type: str or ~azure.ai.projects.models.FILE_PATH
+    :vartype type: str or ~azure.ai.projects._generated.models.FILE_PATH
     :ivar file_id: The ID of the file. Required.
     :vartype file_id: str
     :ivar index: The index of the file in the list of files. Required.
@@ -1026,7 +1026,7 @@ class AnnotationUrlCitation(Annotation, discriminator="url_citation"):
     """A citation for a web resource used to generate a model response.
 
     :ivar type: The type of the URL citation. Always ``url_citation``. Required.
-    :vartype type: str or ~azure.ai.projects.models.URL_CITATION
+    :vartype type: str or ~azure.ai.projects._generated.models.URL_CITATION
     :ivar url: The URL of the web resource. Required.
     :vartype url: str
     :ivar start_index: The index of the first character of the URL citation in the message.
@@ -1081,9 +1081,9 @@ class ApiError(_Model):
     :ivar target: The target of the error, if applicable.
     :vartype target: str
     :ivar details: Additional details about the error. Required.
-    :vartype details: list[~azure.ai.projects.models.ApiError]
+    :vartype details: list[~azure.ai.projects._generated.models.ApiError]
     :ivar innererror: The inner error, if any.
-    :vartype innererror: ~azure.ai.projects.models.ApiInnerError
+    :vartype innererror: ~azure.ai.projects._generated.models.ApiInnerError
     """
 
     code: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -1125,7 +1125,7 @@ class ApiErrorResponse(_Model):
     """Error response for API failures.
 
     :ivar error: Required.
-    :vartype error: ~azure.ai.projects.models.ApiError
+    :vartype error: ~azure.ai.projects._generated.models.ApiError
     """
 
     error: "_models.ApiError" = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -1155,7 +1155,7 @@ class ApiInnerError(_Model):
     :ivar code: The error code. Required.
     :vartype code: str
     :ivar innererror: The inner error, if any.
-    :vartype innererror: ~azure.ai.projects.models.ApiInnerError
+    :vartype innererror: ~azure.ai.projects._generated.models.ApiInnerError
     """
 
     code: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -1188,7 +1188,7 @@ class ApiKeyCredentials(BaseCredentials, discriminator="ApiKey"):
     """API Key Credential definition.
 
     :ivar type: The credential type. Required. API Key credential
-    :vartype type: str or ~azure.ai.projects.models.API_KEY
+    :vartype type: str or ~azure.ai.projects._generated.models.API_KEY
     :ivar api_key: API Key.
     :vartype api_key: str
     """
@@ -1251,7 +1251,7 @@ class ApproximateLocation(Location, discriminator="approximate"):
     """ApproximateLocation.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.APPROXIMATE
+    :vartype type: str or ~azure.ai.projects._generated.models.APPROXIMATE
     :ivar country:
     :vartype country: str
     :ivar region:
@@ -1335,7 +1335,7 @@ class AzureAIAgentTarget(Target, discriminator="azure_ai_agent"):
     :vartype version: str
     :ivar tool_descriptions: The parameters used to control the sampling behavior of the agent
      during text generation.
-    :vartype tool_descriptions: list[~azure.ai.projects.models.ToolDescription]
+    :vartype tool_descriptions: list[~azure.ai.projects._generated.models.ToolDescription]
     """
 
     type: Literal["azure_ai_agent"] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -1374,9 +1374,9 @@ class AzureAISearchAgentTool(Tool, discriminator="azure_ai_search"):
     """The input definition information for an Azure AI search tool as used to configure an agent.
 
     :ivar type: The object type, which is always 'azure_ai_search'. Required.
-    :vartype type: str or ~azure.ai.projects.models.AZURE_AI_SEARCH
+    :vartype type: str or ~azure.ai.projects._generated.models.AZURE_AI_SEARCH
     :ivar azure_ai_search: The azure ai search index resource. Required.
-    :vartype azure_ai_search: ~azure.ai.projects.models.AzureAISearchToolResource
+    :vartype azure_ai_search: ~azure.ai.projects._generated.models.AzureAISearchToolResource
     """
 
     type: Literal[ToolType.AZURE_AI_SEARCH] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -1475,13 +1475,13 @@ class AzureAISearchIndex(Index, discriminator="AzureSearch"):
     :ivar tags: Tag dictionary. Tags can be added, removed, and updated.
     :vartype tags: dict[str, str]
     :ivar type: Type of index. Required. Azure search
-    :vartype type: str or ~azure.ai.projects.models.AZURE_SEARCH
+    :vartype type: str or ~azure.ai.projects._generated.models.AZURE_SEARCH
     :ivar connection_name: Name of connection to Azure AI Search. Required.
     :vartype connection_name: str
     :ivar index_name: Name of index in Azure AI Search resource to attach. Required.
     :vartype index_name: str
     :ivar field_mapping: Field mapping configuration.
-    :vartype field_mapping: ~azure.ai.projects.models.FieldMapping
+    :vartype field_mapping: ~azure.ai.projects._generated.models.FieldMapping
     """
 
     type: Literal[IndexType.AZURE_SEARCH] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -1521,7 +1521,7 @@ class AzureAISearchToolResource(_Model):
 
     :ivar indexes: The indices attached to this agent. There can be a maximum of 1 index
      resource attached to the agent.
-    :vartype indexes: list[~azure.ai.projects.models.AISearchIndexResource]
+    :vartype indexes: list[~azure.ai.projects._generated.models.AISearchIndexResource]
     """
 
     indexes: Optional[list["_models.AISearchIndexResource"]] = rest_field(
@@ -1552,9 +1552,9 @@ class AzureFunctionAgentTool(Tool, discriminator="azure_function"):
     """The input definition information for an Azure Function Tool, as used to configure an Agent.
 
     :ivar type: The object type, which is always 'browser_automation'. Required.
-    :vartype type: str or ~azure.ai.projects.models.AZURE_FUNCTION
+    :vartype type: str or ~azure.ai.projects._generated.models.AZURE_FUNCTION
     :ivar azure_function: The Azure Function Tool definition. Required.
-    :vartype azure_function: ~azure.ai.projects.models.AzureFunctionDefinition
+    :vartype azure_function: ~azure.ai.projects._generated.models.AzureFunctionDefinition
     """
 
     type: Literal[ToolType.AZURE_FUNCTION] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -1590,7 +1590,7 @@ class AzureFunctionBinding(_Model):
      "storage_queue".
     :vartype type: str
     :ivar storage_queue: Storage queue. Required.
-    :vartype storage_queue: ~azure.ai.projects.models.AzureFunctionStorageQueue
+    :vartype storage_queue: ~azure.ai.projects._generated.models.AzureFunctionStorageQueue
     """
 
     type: Literal["storage_queue"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -1624,13 +1624,13 @@ class AzureFunctionDefinition(_Model):
     """The definition of Azure function.
 
     :ivar function: The definition of azure function and its parameters. Required.
-    :vartype function: ~azure.ai.projects.models.AzureFunctionDefinitionFunction
+    :vartype function: ~azure.ai.projects._generated.models.AzureFunctionDefinitionFunction
     :ivar input_binding: Input storage queue. The queue storage trigger runs a function as messages
      are added to it. Required.
-    :vartype input_binding: ~azure.ai.projects.models.AzureFunctionBinding
+    :vartype input_binding: ~azure.ai.projects._generated.models.AzureFunctionBinding
     :ivar output_binding: Output storage queue. The function writes output to this queue when the
      input items are processed. Required.
-    :vartype output_binding: ~azure.ai.projects.models.AzureFunctionBinding
+    :vartype output_binding: ~azure.ai.projects._generated.models.AzureFunctionBinding
     """
 
     function: "_models.AzureFunctionDefinitionFunction" = rest_field(
@@ -1818,9 +1818,10 @@ class BingCustomSearchAgentTool(Tool, discriminator="bing_custom_search_preview"
     """The input definition information for a Bing custom search tool as used to configure an agent.
 
     :ivar type: The object type, which is always 'bing_custom_search'. Required.
-    :vartype type: str or ~azure.ai.projects.models.BING_CUSTOM_SEARCH_PREVIEW
+    :vartype type: str or ~azure.ai.projects._generated.models.BING_CUSTOM_SEARCH_PREVIEW
     :ivar bing_custom_search_preview: The bing custom search tool parameters. Required.
-    :vartype bing_custom_search_preview: ~azure.ai.projects.models.BingCustomSearchToolParameters
+    :vartype bing_custom_search_preview:
+     ~azure.ai.projects._generated.models.BingCustomSearchToolParameters
     """
 
     type: Literal[ToolType.BING_CUSTOM_SEARCH_PREVIEW] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -1910,7 +1911,8 @@ class BingCustomSearchToolParameters(_Model):
     :ivar search_configurations: The project connections attached to this tool. There can be a
      maximum of 1 connection
      resource attached to the tool. Required.
-    :vartype search_configurations: list[~azure.ai.projects.models.BingCustomSearchConfiguration]
+    :vartype search_configurations:
+     list[~azure.ai.projects._generated.models.BingCustomSearchConfiguration]
     """
 
     search_configurations: list["_models.BingCustomSearchConfiguration"] = rest_field(
@@ -1942,9 +1944,9 @@ class BingGroundingAgentTool(Tool, discriminator="bing_grounding"):
     agent.
 
     :ivar type: The object type, which is always 'bing_grounding'. Required.
-    :vartype type: str or ~azure.ai.projects.models.BING_GROUNDING
+    :vartype type: str or ~azure.ai.projects._generated.models.BING_GROUNDING
     :ivar bing_grounding: The bing grounding search tool parameters. Required.
-    :vartype bing_grounding: ~azure.ai.projects.models.BingGroundingSearchToolParameters
+    :vartype bing_grounding: ~azure.ai.projects._generated.models.BingGroundingSearchToolParameters
     """
 
     type: Literal[ToolType.BING_GROUNDING] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -2030,7 +2032,7 @@ class BingGroundingSearchToolParameters(_Model):
      maximum of 1
      search configuration resource attached to the tool. Required.
     :vartype search_configurations:
-     list[~azure.ai.projects.models.BingGroundingSearchConfiguration]
+     list[~azure.ai.projects._generated.models.BingGroundingSearchConfiguration]
     """
 
     search_configurations: list["_models.BingGroundingSearchConfiguration"] = rest_field(
@@ -2066,7 +2068,7 @@ class BlobReference(_Model):
     :ivar storage_account_arm_id: ARM ID of the storage account to use. Required.
     :vartype storage_account_arm_id: str
     :ivar credential: Credential info to access the storage account. Required.
-    :vartype credential: ~azure.ai.projects.models.BlobReferenceSasCredential
+    :vartype credential: ~azure.ai.projects._generated.models.BlobReferenceSasCredential
     """
 
     blob_uri: str = rest_field(name="blobUri", visibility=["read", "create", "update", "delete", "query"])
@@ -2124,9 +2126,10 @@ class BrowserAutomationAgentTool(Tool, discriminator="browser_automation_preview
     """The input definition information for a Browser Automation Tool, as used to configure an Agent.
 
     :ivar type: The object type, which is always 'browser_automation'. Required.
-    :vartype type: str or ~azure.ai.projects.models.BROWSER_AUTOMATION_PREVIEW
+    :vartype type: str or ~azure.ai.projects._generated.models.BROWSER_AUTOMATION_PREVIEW
     :ivar browser_automation_preview: The Browser Automation Tool parameters. Required.
-    :vartype browser_automation_preview: ~azure.ai.projects.models.BrowserAutomationToolParameters
+    :vartype browser_automation_preview:
+     ~azure.ai.projects._generated.models.BrowserAutomationToolParameters
     """
 
     type: Literal[ToolType.BROWSER_AUTOMATION_PREVIEW] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -2189,7 +2192,7 @@ class BrowserAutomationToolParameters(_Model):
     :ivar project_connection: The project connection parameters associated with the Browser
      Automation Tool. Required.
     :vartype project_connection:
-     ~azure.ai.projects.models.BrowserAutomationToolConnectionParameters
+     ~azure.ai.projects._generated.models.BrowserAutomationToolConnectionParameters
     """
 
     project_connection: "_models.BrowserAutomationToolConnectionParameters" = rest_field(
@@ -2219,9 +2222,9 @@ class CaptureStructuredOutputsTool(Tool, discriminator="capture_structured_outpu
     """A tool for capturing structured outputs.
 
     :ivar type: The type of the tool. Always ``capture_structured_outputs``. Required.
-    :vartype type: str or ~azure.ai.projects.models.CAPTURE_STRUCTURED_OUTPUTS
+    :vartype type: str or ~azure.ai.projects._generated.models.CAPTURE_STRUCTURED_OUTPUTS
     :ivar outputs: The structured outputs to capture from the model. Required.
-    :vartype outputs: ~azure.ai.projects.models.StructuredOutputDefinition
+    :vartype outputs: ~azure.ai.projects._generated.models.StructuredOutputDefinition
     """
 
     type: Literal[ToolType.CAPTURE_STRUCTURED_OUTPUTS] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -2357,7 +2360,7 @@ class ChatSummaryMemoryItem(MemoryItem, discriminator="chat_summary"):
     :ivar content: The content of the memory. Required.
     :vartype content: str
     :ivar kind: The kind of the memory item. Required. Summary of chat conversations.
-    :vartype kind: str or ~azure.ai.projects.models.CHAT_SUMMARY
+    :vartype kind: str or ~azure.ai.projects._generated.models.CHAT_SUMMARY
     """
 
     kind: Literal[MemoryItemKind.CHAT_SUMMARY] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -2389,9 +2392,9 @@ class ClusterInsightResult(_Model):
     """Insights from the cluster analysis.
 
     :ivar summary: Summary of the insights report. Required.
-    :vartype summary: ~azure.ai.projects.models.InsightSummary
+    :vartype summary: ~azure.ai.projects._generated.models.InsightSummary
     :ivar clusters: List of clusters identified in the insights. Required.
-    :vartype clusters: list[~azure.ai.projects.models.InsightCluster]
+    :vartype clusters: list[~azure.ai.projects._generated.models.InsightCluster]
     :ivar coordinates:   Optional mapping of IDs to 2D coordinates used by the UX for
      visualization.
 
@@ -2412,7 +2415,7 @@ class ClusterInsightResult(_Model):
 
        Coordinates are intended only for client-side visualization and do not
        modify the canonical insights results.
-    :vartype coordinates: dict[str, ~azure.ai.projects.models.ChartCoordinate]
+    :vartype coordinates: dict[str, ~azure.ai.projects._generated.models.ChartCoordinate]
     """
 
     summary: "_models.InsightSummary" = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -2522,7 +2525,7 @@ class EvaluatorDefinition(_Model):
      includes parameters like type, properties, required.
     :vartype data_schema: any
     :ivar metrics: List of output metrics produced by this evaluator.
-    :vartype metrics: dict[str, ~azure.ai.projects.models.EvaluatorMetric]
+    :vartype metrics: dict[str, ~azure.ai.projects._generated.models.EvaluatorMetric]
     """
 
     __mapping__: dict[str, _Model] = {}
@@ -2571,9 +2574,9 @@ class CodeBasedEvaluatorDefinition(EvaluatorDefinition, discriminator="code"):
      includes parameters like type, properties, required.
     :vartype data_schema: any
     :ivar metrics: List of output metrics produced by this evaluator.
-    :vartype metrics: dict[str, ~azure.ai.projects.models.EvaluatorMetric]
+    :vartype metrics: dict[str, ~azure.ai.projects._generated.models.EvaluatorMetric]
     :ivar type: Required. Code-based definition
-    :vartype type: str or ~azure.ai.projects.models.CODE
+    :vartype type: str or ~azure.ai.projects._generated.models.CODE
     :ivar code_text: Inline code text for the evaluator. Required.
     :vartype code_text: str
     """
@@ -2641,7 +2644,7 @@ class CodeInterpreterOutputImage(CodeInterpreterOutput, discriminator="image"):
     """The image output from the code interpreter.
 
     :ivar type: The type of the output. Always 'image'. Required.
-    :vartype type: str or ~azure.ai.projects.models.IMAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.IMAGE
     :ivar url: The URL of the image output from the code interpreter. Required.
     :vartype url: str
     """
@@ -2674,7 +2677,7 @@ class CodeInterpreterOutputLogs(CodeInterpreterOutput, discriminator="logs"):
     """The logs output from the code interpreter.
 
     :ivar type: The type of the output. Always 'logs'. Required.
-    :vartype type: str or ~azure.ai.projects.models.LOGS
+    :vartype type: str or ~azure.ai.projects._generated.models.LOGS
     :ivar logs: The logs output from the code interpreter. Required.
     :vartype logs: str
     """
@@ -2707,11 +2710,11 @@ class CodeInterpreterTool(Tool, discriminator="code_interpreter"):
     """A tool that runs Python code to help generate a response to a prompt.
 
     :ivar type: The type of the code interpreter tool. Always ``code_interpreter``. Required.
-    :vartype type: str or ~azure.ai.projects.models.CODE_INTERPRETER
+    :vartype type: str or ~azure.ai.projects._generated.models.CODE_INTERPRETER
     :ivar container: The code interpreter container. Can be a container ID or an object that
      specifies uploaded file IDs to make available to your code. Required. Is either a str type or a
      CodeInterpreterToolAuto type.
-    :vartype container: str or ~azure.ai.projects.models.CodeInterpreterToolAuto
+    :vartype container: str or ~azure.ai.projects._generated.models.CodeInterpreterToolAuto
     """
 
     type: Literal[ToolType.CODE_INTERPRETER] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -2827,14 +2830,14 @@ class CodeInterpreterToolCallItemParam(ItemParam, discriminator="code_interprete
     """A tool call to run code.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.CODE_INTERPRETER_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.CODE_INTERPRETER_CALL
     :ivar container_id: The ID of the container used to run the code. Required.
     :vartype container_id: str
     :ivar code: The code to run, or null if not available. Required.
     :vartype code: str
     :ivar outputs: The outputs generated by the code interpreter, such as logs or images.
      Can be null if no outputs are available. Required.
-    :vartype outputs: list[~azure.ai.projects.models.CodeInterpreterOutput]
+    :vartype outputs: list[~azure.ai.projects._generated.models.CodeInterpreterOutput]
     """
 
     type: Literal[ItemType.CODE_INTERPRETER_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -2893,7 +2896,7 @@ class ItemResource(_Model):
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     """
 
     __mapping__: dict[str, _Model] = {}
@@ -2935,9 +2938,9 @@ class CodeInterpreterToolCallItemResource(ItemResource, discriminator="code_inte
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.CODE_INTERPRETER_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.CODE_INTERPRETER_CALL
     :ivar status: Required. Is one of the following types: Literal["in_progress"],
      Literal["completed"], Literal["incomplete"], Literal["interpreting"], Literal["failed"]
     :vartype status: str or str or str or str or str
@@ -2947,7 +2950,7 @@ class CodeInterpreterToolCallItemResource(ItemResource, discriminator="code_inte
     :vartype code: str
     :ivar outputs: The outputs generated by the code interpreter, such as logs or images.
      Can be null if no outputs are available. Required.
-    :vartype outputs: list[~azure.ai.projects.models.CodeInterpreterOutput]
+    :vartype outputs: list[~azure.ai.projects._generated.models.CodeInterpreterOutput]
     """
 
     type: Literal[ItemType.CODE_INTERPRETER_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -3049,8 +3052,8 @@ class CompoundFilter(_Model):
     :vartype type: str or str
     :ivar filters: Array of filters to combine. Items can be ``ComparisonFilter`` or
      ``CompoundFilter``. Required.
-    :vartype filters: list[~azure.ai.projects.models.ComparisonFilter or
-     ~azure.ai.projects.models.CompoundFilter]
+    :vartype filters: list[~azure.ai.projects._generated.models.ComparisonFilter or
+     ~azure.ai.projects._generated.models.CompoundFilter]
     """
 
     type: Literal["and", "or"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -3121,7 +3124,7 @@ class ComputerActionClick(ComputerAction, discriminator="click"):
 
     :ivar type: Specifies the event type. For a click action, this property is
      always set to ``click``. Required.
-    :vartype type: str or ~azure.ai.projects.models.CLICK
+    :vartype type: str or ~azure.ai.projects._generated.models.CLICK
     :ivar button: Indicates which mouse button was pressed during the click. One of ``left``,
      ``right``, ``wheel``, ``back``, or ``forward``. Required. Is one of the following types:
      Literal["left"], Literal["right"], Literal["wheel"], Literal["back"], Literal["forward"]
@@ -3173,7 +3176,7 @@ class ComputerActionDoubleClick(ComputerAction, discriminator="double_click"):
 
     :ivar type: Specifies the event type. For a double click action, this property is
      always set to ``double_click``. Required.
-    :vartype type: str or ~azure.ai.projects.models.DOUBLE_CLICK
+    :vartype type: str or ~azure.ai.projects._generated.models.DOUBLE_CLICK
     :ivar x: The x-coordinate where the double click occurred. Required.
     :vartype x: int
     :ivar y: The y-coordinate where the double click occurred. Required.
@@ -3213,7 +3216,7 @@ class ComputerActionDrag(ComputerAction, discriminator="drag"):
 
     :ivar type: Specifies the event type. For a drag action, this property is
      always set to ``drag``. Required.
-    :vartype type: str or ~azure.ai.projects.models.DRAG
+    :vartype type: str or ~azure.ai.projects._generated.models.DRAG
     :ivar path: An array of coordinates representing the path of the drag action. Coordinates will
      appear as an array
      of objects, eg
@@ -3224,7 +3227,7 @@ class ComputerActionDrag(ComputerAction, discriminator="drag"):
           { x: 100, y: 200 },
           { x: 200, y: 300 }
         ]. Required.
-    :vartype path: list[~azure.ai.projects.models.Coordinate]
+    :vartype path: list[~azure.ai.projects._generated.models.Coordinate]
     """
 
     type: Literal[ComputerActionType.DRAG] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -3266,7 +3269,7 @@ class ComputerActionKeyPress(ComputerAction, discriminator="keypress"):
 
     :ivar type: Specifies the event type. For a keypress action, this property is
      always set to ``keypress``. Required.
-    :vartype type: str or ~azure.ai.projects.models.KEYPRESS
+    :vartype type: str or ~azure.ai.projects._generated.models.KEYPRESS
     :ivar keys_property: The combination of keys the model is requesting to be pressed. This is an
      array of strings, each representing a key. Required.
     :vartype keys_property: list[str]
@@ -3303,7 +3306,7 @@ class ComputerActionMove(ComputerAction, discriminator="move"):
 
     :ivar type: Specifies the event type. For a move action, this property is
      always set to ``move``. Required.
-    :vartype type: str or ~azure.ai.projects.models.MOVE
+    :vartype type: str or ~azure.ai.projects._generated.models.MOVE
     :ivar x: The x-coordinate to move to. Required.
     :vartype x: int
     :ivar y: The y-coordinate to move to. Required.
@@ -3343,7 +3346,7 @@ class ComputerActionScreenshot(ComputerAction, discriminator="screenshot"):
 
     :ivar type: Specifies the event type. For a screenshot action, this property is
      always set to ``screenshot``. Required.
-    :vartype type: str or ~azure.ai.projects.models.SCREENSHOT
+    :vartype type: str or ~azure.ai.projects._generated.models.SCREENSHOT
     """
 
     type: Literal[ComputerActionType.SCREENSHOT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -3372,7 +3375,7 @@ class ComputerActionScroll(ComputerAction, discriminator="scroll"):
 
     :ivar type: Specifies the event type. For a scroll action, this property is
      always set to ``scroll``. Required.
-    :vartype type: str or ~azure.ai.projects.models.SCROLL
+    :vartype type: str or ~azure.ai.projects._generated.models.SCROLL
     :ivar x: The x-coordinate where the scroll occurred. Required.
     :vartype x: int
     :ivar y: The y-coordinate where the scroll occurred. Required.
@@ -3422,7 +3425,7 @@ class ComputerActionTypeKeys(ComputerAction, discriminator="type"):
 
     :ivar type: Specifies the event type. For a type action, this property is
      always set to ``type``. Required.
-    :vartype type: str or ~azure.ai.projects.models.TYPE
+    :vartype type: str or ~azure.ai.projects._generated.models.TYPE
     :ivar text: The text to type. Required.
     :vartype text: str
     """
@@ -3457,7 +3460,7 @@ class ComputerActionWait(ComputerAction, discriminator="wait"):
 
     :ivar type: Specifies the event type. For a wait action, this property is
      always set to ``wait``. Required.
-    :vartype type: str or ~azure.ai.projects.models.WAIT
+    :vartype type: str or ~azure.ai.projects._generated.models.WAIT
     """
 
     type: Literal[ComputerActionType.WAIT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -3486,13 +3489,14 @@ class ComputerToolCallItemParam(ItemParam, discriminator="computer_call"):
     `computer use guide </docs/guides/tools-computer-use>`_ for more information.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.COMPUTER_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.COMPUTER_CALL
     :ivar call_id: An identifier used when responding to the tool call with output. Required.
     :vartype call_id: str
     :ivar action: Required.
-    :vartype action: ~azure.ai.projects.models.ComputerAction
+    :vartype action: ~azure.ai.projects._generated.models.ComputerAction
     :ivar pending_safety_checks: The pending safety checks for the computer call. Required.
-    :vartype pending_safety_checks: list[~azure.ai.projects.models.ComputerToolCallSafetyCheck]
+    :vartype pending_safety_checks:
+     list[~azure.ai.projects._generated.models.ComputerToolCallSafetyCheck]
     """
 
     type: Literal[ItemType.COMPUTER_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -3534,9 +3538,9 @@ class ComputerToolCallItemResource(ItemResource, discriminator="computer_call"):
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.COMPUTER_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.COMPUTER_CALL
     :ivar status: The status of the item. One of ``in_progress``, ``completed``, or
      ``incomplete``. Populated when items are returned via API. Required. Is one of the following
      types: Literal["in_progress"], Literal["completed"], Literal["incomplete"]
@@ -3544,9 +3548,10 @@ class ComputerToolCallItemResource(ItemResource, discriminator="computer_call"):
     :ivar call_id: An identifier used when responding to the tool call with output. Required.
     :vartype call_id: str
     :ivar action: Required.
-    :vartype action: ~azure.ai.projects.models.ComputerAction
+    :vartype action: ~azure.ai.projects._generated.models.ComputerAction
     :ivar pending_safety_checks: The pending safety checks for the computer call. Required.
-    :vartype pending_safety_checks: list[~azure.ai.projects.models.ComputerToolCallSafetyCheck]
+    :vartype pending_safety_checks:
+     list[~azure.ai.projects._generated.models.ComputerToolCallSafetyCheck]
     """
 
     type: Literal[ItemType.COMPUTER_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -3628,7 +3633,7 @@ class ComputerToolCallOutputItemOutputComputerScreenshot(
     """ComputerToolCallOutputItemOutputComputerScreenshot.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.SCREENSHOT
+    :vartype type: str or ~azure.ai.projects._generated.models.SCREENSHOT
     :ivar image_url:
     :vartype image_url: str
     :ivar file_id:
@@ -3664,16 +3669,16 @@ class ComputerToolCallOutputItemParam(ItemParam, discriminator="computer_call_ou
     """The output of a computer tool call.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.COMPUTER_CALL_OUTPUT
+    :vartype type: str or ~azure.ai.projects._generated.models.COMPUTER_CALL_OUTPUT
     :ivar call_id: The ID of the computer tool call that produced the output. Required.
     :vartype call_id: str
     :ivar acknowledged_safety_checks: The safety checks reported by the API that have been
      acknowledged by the
      developer.
     :vartype acknowledged_safety_checks:
-     list[~azure.ai.projects.models.ComputerToolCallSafetyCheck]
+     list[~azure.ai.projects._generated.models.ComputerToolCallSafetyCheck]
     :ivar output: Required.
-    :vartype output: ~azure.ai.projects.models.ComputerToolCallOutputItemOutput
+    :vartype output: ~azure.ai.projects._generated.models.ComputerToolCallOutputItemOutput
     """
 
     type: Literal[ItemType.COMPUTER_CALL_OUTPUT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -3717,9 +3722,9 @@ class ComputerToolCallOutputItemResource(ItemResource, discriminator="computer_c
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.COMPUTER_CALL_OUTPUT
+    :vartype type: str or ~azure.ai.projects._generated.models.COMPUTER_CALL_OUTPUT
     :ivar status: The status of the item. One of ``in_progress``, ``completed``, or
      ``incomplete``. Populated when items are returned via API. Required. Is one of the following
      types: Literal["in_progress"], Literal["completed"], Literal["incomplete"]
@@ -3730,9 +3735,9 @@ class ComputerToolCallOutputItemResource(ItemResource, discriminator="computer_c
      acknowledged by the
      developer.
     :vartype acknowledged_safety_checks:
-     list[~azure.ai.projects.models.ComputerToolCallSafetyCheck]
+     list[~azure.ai.projects._generated.models.ComputerToolCallSafetyCheck]
     :ivar output: Required.
-    :vartype output: ~azure.ai.projects.models.ComputerToolCallOutputItemOutput
+    :vartype output: ~azure.ai.projects._generated.models.ComputerToolCallOutputItemOutput
     """
 
     type: Literal[ItemType.COMPUTER_CALL_OUTPUT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -3822,7 +3827,7 @@ class ComputerUsePreviewTool(Tool, discriminator="computer_use_preview"):
     <https://platform.openai.com/docs/guides/tools-computer-use>`_.
 
     :ivar type: The type of the computer use tool. Always ``computer_use_preview``. Required.
-    :vartype type: str or ~azure.ai.projects.models.COMPUTER_USE_PREVIEW
+    :vartype type: str or ~azure.ai.projects._generated.models.COMPUTER_USE_PREVIEW
     :ivar environment: The type of computer environment to control. Required. Is one of the
      following types: Literal["windows"], Literal["mac"], Literal["linux"], Literal["ubuntu"],
      Literal["browser"]
@@ -3884,7 +3889,7 @@ class Connection(_Model):
      Required.
     :vartype is_default: bool
     :ivar credentials: The credentials used by the connection. Required.
-    :vartype credentials: ~azure.ai.projects.models.BaseCredentials
+    :vartype credentials: ~azure.ai.projects._generated.models.BaseCredentials
     :ivar metadata: Metadata of the connection. Required.
     :vartype metadata: dict[str, str]
     """
@@ -3911,12 +3916,13 @@ class ContainerAppAgentDefinition(AgentDefinition, discriminator="container_app"
     """The container app agent definition.
 
     :ivar rai_config: Configuration for Responsible AI (RAI) content filtering and safety features.
-    :vartype rai_config: ~azure.ai.projects.models.RaiConfig
+    :vartype rai_config: ~azure.ai.projects._generated.models.RaiConfig
     :ivar kind: Required.
-    :vartype kind: str or ~azure.ai.projects.models.CONTAINER_APP
+    :vartype kind: str or ~azure.ai.projects._generated.models.CONTAINER_APP
     :ivar container_protocol_versions: The protocols that the agent supports for ingress
      communication of the containers. Required.
-    :vartype container_protocol_versions: list[~azure.ai.projects.models.ProtocolVersionRecord]
+    :vartype container_protocol_versions:
+     list[~azure.ai.projects._generated.models.ProtocolVersionRecord]
     :ivar container_app_resource_id: The resource ID of the Azure Container App that hosts this
      agent. Not mutable across versions. Required.
     :vartype container_app_resource_id: str
@@ -4000,7 +4006,7 @@ class ContinuousEvaluationRuleAction(EvaluationRuleAction, discriminator="contin
     """Evaluation rule action for continuous evaluation.
 
     :ivar type: Required. Continuous evaluation.
-    :vartype type: str or ~azure.ai.projects.models.CONTINUOUS_EVALUATION
+    :vartype type: str or ~azure.ai.projects._generated.models.CONTINUOUS_EVALUATION
     :ivar eval_id: Eval Id to add continuous evaluation runs to. Required.
     :vartype eval_id: str
     :ivar max_hourly_runs: Maximum number of evaluation runs allowed per hour.
@@ -4083,7 +4089,7 @@ class CosmosDBIndex(Index, discriminator="CosmosDBNoSqlVectorStore"):
     :ivar tags: Tag dictionary. Tags can be added, removed, and updated.
     :vartype tags: dict[str, str]
     :ivar type: Type of index. Required. CosmosDB
-    :vartype type: str or ~azure.ai.projects.models.COSMOS_DB
+    :vartype type: str or ~azure.ai.projects._generated.models.COSMOS_DB
     :ivar connection_name: Name of connection to CosmosDB. Required.
     :vartype connection_name: str
     :ivar database_name: Name of the CosmosDB Database. Required.
@@ -4091,9 +4097,9 @@ class CosmosDBIndex(Index, discriminator="CosmosDBNoSqlVectorStore"):
     :ivar container_name: Name of CosmosDB Container. Required.
     :vartype container_name: str
     :ivar embedding_configuration: Embedding model configuration. Required.
-    :vartype embedding_configuration: ~azure.ai.projects.models.EmbeddingConfiguration
+    :vartype embedding_configuration: ~azure.ai.projects._generated.models.EmbeddingConfiguration
     :ivar field_mapping: Field mapping configuration. Required.
-    :vartype field_mapping: ~azure.ai.projects.models.FieldMapping
+    :vartype field_mapping: ~azure.ai.projects._generated.models.FieldMapping
     """
 
     type: Literal[IndexType.COSMOS_DB] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -4140,7 +4146,7 @@ class CreatedBy(_Model):
     """CreatedBy.
 
     :ivar agent: The agent that created the item.
-    :vartype agent: ~azure.ai.projects.models.AgentId
+    :vartype agent: ~azure.ai.projects._generated.models.AgentId
     :ivar response_id: The response on which the item is created.
     :vartype response_id: str
     """
@@ -4206,7 +4212,7 @@ class CronTrigger(Trigger, discriminator="Cron"):
     """Cron based trigger.
 
     :ivar type: Required. Cron based trigger.
-    :vartype type: str or ~azure.ai.projects.models.CRON
+    :vartype type: str or ~azure.ai.projects._generated.models.CRON
     :ivar expression: Cron expression that defines the schedule frequency. Required.
     :vartype expression: str
     :ivar time_zone: Time zone for the cron schedule.
@@ -4254,7 +4260,7 @@ class CustomCredential(BaseCredentials, discriminator="CustomKeys"):
     """Custom credential definition.
 
     :ivar type: The credential type. Required. Custom credential
-    :vartype type: str or ~azure.ai.projects.models.CUSTOM
+    :vartype type: str or ~azure.ai.projects._generated.models.CUSTOM
     """
 
     type: Literal[CredentialType.CUSTOM] = rest_discriminator(name="type", visibility=["read"])  # type: ignore
@@ -4316,7 +4322,7 @@ class DailyRecurrenceSchedule(RecurrenceSchedule, discriminator="Daily"):
     """Daily recurrence schedule.
 
     :ivar type: Daily recurrence type. Required. Daily recurrence pattern.
-    :vartype type: str or ~azure.ai.projects.models.DAILY
+    :vartype type: str or ~azure.ai.projects._generated.models.DAILY
     :ivar hours: Hours for the recurrence schedule. Required.
     :vartype hours: list[int]
     """
@@ -4349,7 +4355,7 @@ class DatasetCredential(_Model):
     """Represents a reference to a blob for consumption.
 
     :ivar blob_reference: Credential info to access the storage account. Required.
-    :vartype blob_reference: ~azure.ai.projects.models.BlobReference
+    :vartype blob_reference: ~azure.ai.projects._generated.models.BlobReference
     """
 
     blob_reference: "_models.BlobReference" = rest_field(
@@ -4647,7 +4653,7 @@ class EntraIDCredentials(BaseCredentials, discriminator="AAD"):
     """Entra ID credential definition.
 
     :ivar type: The credential type. Required. Entra ID credential (formerly known as AAD)
-    :vartype type: str or ~azure.ai.projects.models.ENTRA_ID
+    :vartype type: str or ~azure.ai.projects._generated.models.ENTRA_ID
     """
 
     type: Literal[CredentialType.ENTRA_ID] = rest_discriminator(name="type", visibility=["read"])  # type: ignore
@@ -4674,9 +4680,9 @@ class EvalCompareReport(InsightResult, discriminator="EvaluationComparison"):
     """Insights from the evaluation comparison.
 
     :ivar type: The type of insights result. Required. Evaluation Comparison.
-    :vartype type: str or ~azure.ai.projects.models.EVALUATION_COMPARISON
+    :vartype type: str or ~azure.ai.projects._generated.models.EVALUATION_COMPARISON
     :ivar comparisons: Comparison results for each treatment run against the baseline. Required.
-    :vartype comparisons: list[~azure.ai.projects.models.EvalRunResultComparison]
+    :vartype comparisons: list[~azure.ai.projects._generated.models.EvalRunResultComparison]
     :ivar method: The statistical method used for comparison. Required.
     :vartype method: str
     """
@@ -4759,7 +4765,7 @@ class EvalRunResultCompareItem(_Model):
     :ivar treatment_run_id: The treatment run ID. Required.
     :vartype treatment_run_id: str
     :ivar treatment_run_summary: Summary statistics of the treatment run. Required.
-    :vartype treatment_run_summary: ~azure.ai.projects.models.EvalRunResultSummary
+    :vartype treatment_run_summary: ~azure.ai.projects._generated.models.EvalRunResultSummary
     :ivar delta_estimate: Estimated difference between treatment and baseline. Required.
     :vartype delta_estimate: float
     :ivar p_value: P-value for the treatment effect. Required.
@@ -4819,9 +4825,9 @@ class EvalRunResultComparison(_Model):
     :ivar evaluator: Name of the evaluator for this testing criteria. Required.
     :vartype evaluator: str
     :ivar baseline_run_summary: Summary statistics of the baseline run. Required.
-    :vartype baseline_run_summary: ~azure.ai.projects.models.EvalRunResultSummary
+    :vartype baseline_run_summary: ~azure.ai.projects._generated.models.EvalRunResultSummary
     :ivar compare_items: List of comparison results for each treatment run. Required.
-    :vartype compare_items: list[~azure.ai.projects.models.EvalRunResultCompareItem]
+    :vartype compare_items: list[~azure.ai.projects._generated.models.EvalRunResultCompareItem]
     """
 
     testing_criteria: str = rest_field(
@@ -4912,7 +4918,7 @@ class EvaluationComparisonRequest(InsightRequest, discriminator="EvaluationCompa
     """Evaluation Comparison Request.
 
     :ivar type: The type of request. Required. Evaluation Comparison.
-    :vartype type: str or ~azure.ai.projects.models.EVALUATION_COMPARISON
+    :vartype type: str or ~azure.ai.projects._generated.models.EVALUATION_COMPARISON
     :ivar eval_id: Identifier for the evaluation. Required.
     :vartype eval_id: str
     :ivar baseline_run_id: The baseline run ID for comparison. Required.
@@ -5012,9 +5018,9 @@ class EvaluationResultSample(InsightSample, discriminator="EvaluationResultSampl
     :ivar correlation_info: Info about the correlation for the analysis sample. Required.
     :vartype correlation_info: dict[str, any]
     :ivar type: Evaluation Result Sample Type. Required. A sample from the evaluation result.
-    :vartype type: str or ~azure.ai.projects.models.EVALUATION_RESULT_SAMPLE
+    :vartype type: str or ~azure.ai.projects._generated.models.EVALUATION_RESULT_SAMPLE
     :ivar evaluation_result: Evaluation result for the analysis sample. Required.
-    :vartype evaluation_result: ~azure.ai.projects.models.EvalResult
+    :vartype evaluation_result: ~azure.ai.projects._generated.models.EvalResult
     """
 
     type: Literal[SampleType.EVALUATION_RESULT_SAMPLE] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -5056,9 +5062,9 @@ class EvaluationRule(_Model):
     :ivar description: Description for the evaluation rule.
     :vartype description: str
     :ivar action: Definition of the evaluation rule action. Required.
-    :vartype action: ~azure.ai.projects.models.EvaluationRuleAction
+    :vartype action: ~azure.ai.projects._generated.models.EvaluationRuleAction
     :ivar filter: Filter condition of the evaluation rule.
-    :vartype filter: ~azure.ai.projects.models.EvaluationRuleFilter
+    :vartype filter: ~azure.ai.projects._generated.models.EvaluationRuleFilter
     :ivar event_type: Event type that the evaluation rule applies to. Required. Known values are:
      "response.completed" and "manual".
     :vartype event_type: str or ~azure.ai.projects.models.EvaluationRuleEventType
@@ -5147,9 +5153,9 @@ class EvaluationRunClusterInsightResult(InsightResult, discriminator="Evaluation
     """Insights from the evaluation run cluster analysis.
 
     :ivar type: The type of insights result. Required. Insights on an Evaluation run result.
-    :vartype type: str or ~azure.ai.projects.models.EVALUATION_RUN_CLUSTER_INSIGHT
+    :vartype type: str or ~azure.ai.projects._generated.models.EVALUATION_RUN_CLUSTER_INSIGHT
     :ivar cluster_insight: Required.
-    :vartype cluster_insight: ~azure.ai.projects.models.ClusterInsightResult
+    :vartype cluster_insight: ~azure.ai.projects._generated.models.ClusterInsightResult
     """
 
     type: Literal[InsightType.EVALUATION_RUN_CLUSTER_INSIGHT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -5182,13 +5188,13 @@ class EvaluationRunClusterInsightsRequest(InsightRequest, discriminator="Evaluat
     """Insights on set of Evaluation Results.
 
     :ivar type: The type of insights request. Required. Insights on an Evaluation run result.
-    :vartype type: str or ~azure.ai.projects.models.EVALUATION_RUN_CLUSTER_INSIGHT
+    :vartype type: str or ~azure.ai.projects._generated.models.EVALUATION_RUN_CLUSTER_INSIGHT
     :ivar eval_id: Evaluation Id for the insights. Required.
     :vartype eval_id: str
     :ivar run_ids: List of evaluation run IDs for the insights. Required.
     :vartype run_ids: list[str]
     :ivar model_configuration: Configuration of the model used in the insight generation.
-    :vartype model_configuration: ~azure.ai.projects.models.InsightModelConfiguration
+    :vartype model_configuration: ~azure.ai.projects._generated.models.InsightModelConfiguration
     """
 
     type: Literal[InsightType.EVALUATION_RUN_CLUSTER_INSIGHT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -5266,7 +5272,7 @@ class EvaluationScheduleTask(ScheduleTask, discriminator="Evaluation"):
     :ivar configuration: Configuration for the task.
     :vartype configuration: dict[str, str]
     :ivar type: Required. Evaluation task.
-    :vartype type: str or ~azure.ai.projects.models.EVALUATION
+    :vartype type: str or ~azure.ai.projects._generated.models.EVALUATION
     :ivar eval_id: Identifier of the evaluation group. Required.
     :vartype eval_id: str
     :ivar eval_run: The evaluation run payload. Required.
@@ -5315,9 +5321,9 @@ class EvaluationTaxonomy(_Model):
     :ivar tags: Tag dictionary. Tags can be added, removed, and updated.
     :vartype tags: dict[str, str]
     :ivar taxonomy_input: Input configuration for the evaluation taxonomy. Required.
-    :vartype taxonomy_input: ~azure.ai.projects.models.EvaluationTaxonomyInput
+    :vartype taxonomy_input: ~azure.ai.projects._generated.models.EvaluationTaxonomyInput
     :ivar taxonomy_categories: List of taxonomy categories.
-    :vartype taxonomy_categories: list[~azure.ai.projects.models.TaxonomyCategory]
+    :vartype taxonomy_categories: list[~azure.ai.projects._generated.models.TaxonomyCategory]
     :ivar properties: Additional properties for the evaluation taxonomy.
     :vartype properties: dict[str, str]
     """
@@ -5433,7 +5439,7 @@ class EvaluatorVersion(_Model):
     :ivar categories: The categories of the evaluator. Required.
     :vartype categories: list[str or ~azure.ai.projects.models.EvaluatorCategory]
     :ivar definition: Definition of the evaluator. Required.
-    :vartype definition: ~azure.ai.projects.models.EvaluatorDefinition
+    :vartype definition: ~azure.ai.projects._generated.models.EvaluatorDefinition
     :ivar created_by: Creator of the evaluator. Required.
     :vartype created_by: str
     :ivar created_at: Creation date/time of the evaluator. Required.
@@ -5514,7 +5520,7 @@ class FabricDataAgentToolParameters(_Model):
     :ivar project_connections: The project connections attached to this tool. There can be a
      maximum of 1 connection
      resource attached to the tool.
-    :vartype project_connections: list[~azure.ai.projects.models.ToolProjectConnection]
+    :vartype project_connections: list[~azure.ai.projects._generated.models.ToolProjectConnection]
     """
 
     project_connections: Optional[list["_models.ToolProjectConnection"]] = rest_field(
@@ -5618,7 +5624,7 @@ class FileDatasetVersion(DatasetVersion, discriminator="uri_file"):
     :ivar tags: Tag dictionary. Tags can be added, removed, and updated.
     :vartype tags: dict[str, str]
     :ivar type: Dataset type. Required. URI file.
-    :vartype type: str or ~azure.ai.projects.models.URI_FILE
+    :vartype type: str or ~azure.ai.projects._generated.models.URI_FILE
     """
 
     type: Literal[DatasetType.URI_FILE] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -5651,17 +5657,17 @@ class FileSearchTool(Tool, discriminator="file_search"):
     search tool <https://platform.openai.com/docs/guides/tools-file-search>`_.
 
     :ivar type: The type of the file search tool. Always ``file_search``. Required.
-    :vartype type: str or ~azure.ai.projects.models.FILE_SEARCH
+    :vartype type: str or ~azure.ai.projects._generated.models.FILE_SEARCH
     :ivar vector_store_ids: The IDs of the vector stores to search. Required.
     :vartype vector_store_ids: list[str]
     :ivar max_num_results: The maximum number of results to return. This number should be between 1
      and 50 inclusive.
     :vartype max_num_results: int
     :ivar ranking_options: Ranking options for search.
-    :vartype ranking_options: ~azure.ai.projects.models.RankingOptions
+    :vartype ranking_options: ~azure.ai.projects._generated.models.RankingOptions
     :ivar filters: A filter to apply. Is either a ComparisonFilter type or a CompoundFilter type.
-    :vartype filters: ~azure.ai.projects.models.ComparisonFilter or
-     ~azure.ai.projects.models.CompoundFilter
+    :vartype filters: ~azure.ai.projects._generated.models.ComparisonFilter or
+     ~azure.ai.projects._generated.models.CompoundFilter
     """
 
     type: Literal[ToolType.FILE_SEARCH] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -5674,7 +5680,9 @@ class FileSearchTool(Tool, discriminator="file_search"):
         visibility=["read", "create", "update", "delete", "query"]
     )
     """Ranking options for search."""
-    filters: Optional[Union["_models.ComparisonFilter", "_models.CompoundFilter"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    filters: Optional[Union["_models.ComparisonFilter", "_models.CompoundFilter"]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """A filter to apply. Is either a ComparisonFilter type or a CompoundFilter type."""
 
     @overload
@@ -5704,11 +5712,11 @@ class FileSearchToolCallItemParam(ItemParam, discriminator="file_search_call"):
     `file search guide </docs/guides/tools-file-search>`_ for more information.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.FILE_SEARCH_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.FILE_SEARCH_CALL
     :ivar queries: The queries used to search for files. Required.
     :vartype queries: list[str]
     :ivar results: The results of the file search tool call.
-    :vartype results: list[~azure.ai.projects.models.FileSearchToolCallItemParamResult]
+    :vartype results: list[~azure.ai.projects._generated.models.FileSearchToolCallItemParamResult]
     """
 
     type: Literal[ItemType.FILE_SEARCH_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -5750,7 +5758,7 @@ class FileSearchToolCallItemParamResult(_Model):
     :ivar filename: The name of the file.
     :vartype filename: str
     :ivar attributes:
-    :vartype attributes: ~azure.ai.projects.models.VectorStoreFileAttributes
+    :vartype attributes: ~azure.ai.projects._generated.models.VectorStoreFileAttributes
     :ivar score: The relevance score of the file - a value between 0 and 1.
     :vartype score: float
     """
@@ -5796,9 +5804,9 @@ class FileSearchToolCallItemResource(ItemResource, discriminator="file_search_ca
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.FILE_SEARCH_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.FILE_SEARCH_CALL
     :ivar status: The status of the file search tool call. One of ``in_progress``,
      ``searching``, ``incomplete`` or ``failed``,. Required. Is one of the following types:
      Literal["in_progress"], Literal["searching"], Literal["completed"], Literal["incomplete"],
@@ -5807,7 +5815,7 @@ class FileSearchToolCallItemResource(ItemResource, discriminator="file_search_ca
     :ivar queries: The queries used to search for files. Required.
     :vartype queries: list[str]
     :ivar results: The results of the file search tool call.
-    :vartype results: list[~azure.ai.projects.models.FileSearchToolCallItemParamResult]
+    :vartype results: list[~azure.ai.projects._generated.models.FileSearchToolCallItemParamResult]
     """
 
     type: Literal[ItemType.FILE_SEARCH_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -5873,7 +5881,7 @@ class FolderDatasetVersion(DatasetVersion, discriminator="uri_folder"):
     :ivar tags: Tag dictionary. Tags can be added, removed, and updated.
     :vartype tags: dict[str, str]
     :ivar type: Dataset type. Required. URI folder.
-    :vartype type: str or ~azure.ai.projects.models.URI_FOLDER
+    :vartype type: str or ~azure.ai.projects._generated.models.URI_FOLDER
     """
 
     type: Literal[DatasetType.URI_FOLDER] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -5906,7 +5914,7 @@ class FunctionTool(Tool, discriminator="function"):
     calling <https://platform.openai.com/docs/guides/function-calling>`_.
 
     :ivar type: The type of the function tool. Always ``function``. Required.
-    :vartype type: str or ~azure.ai.projects.models.FUNCTION
+    :vartype type: str or ~azure.ai.projects._generated.models.FUNCTION
     :ivar name: The name of the function to call. Required.
     :vartype name: str
     :ivar description: A description of the function. Used by the model to determine whether or not
@@ -5957,7 +5965,7 @@ class FunctionToolCallItemParam(ItemParam, discriminator="function_call"):
     `function calling guide </docs/guides/function-calling>`_ for more information.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.FUNCTION_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.FUNCTION_CALL
     :ivar call_id: The unique ID of the function tool call generated by the model. Required.
     :vartype call_id: str
     :ivar name: The name of the function to run. Required.
@@ -6003,9 +6011,9 @@ class FunctionToolCallItemResource(ItemResource, discriminator="function_call"):
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.FUNCTION_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.FUNCTION_CALL
     :ivar status: The status of the item. One of ``in_progress``, ``completed``, or
      ``incomplete``. Populated when items are returned via API. Required. Is one of the following
      types: Literal["in_progress"], Literal["completed"], Literal["incomplete"]
@@ -6061,7 +6069,7 @@ class FunctionToolCallOutputItemParam(ItemParam, discriminator="function_call_ou
     """The output of a function tool call.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.FUNCTION_CALL_OUTPUT
+    :vartype type: str or ~azure.ai.projects._generated.models.FUNCTION_CALL_OUTPUT
     :ivar call_id: The unique ID of the function tool call generated by the model. Required.
     :vartype call_id: str
     :ivar output: A JSON string of the output of the function tool call. Required.
@@ -6101,9 +6109,9 @@ class FunctionToolCallOutputItemResource(ItemResource, discriminator="function_c
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.FUNCTION_CALL_OUTPUT
+    :vartype type: str or ~azure.ai.projects._generated.models.FUNCTION_CALL_OUTPUT
     :ivar status: The status of the item. One of ``in_progress``, ``completed``, or
      ``incomplete``. Populated when items are returned via API. Required. Is one of the following
      types: Literal["in_progress"], Literal["completed"], Literal["incomplete"]
@@ -6157,16 +6165,17 @@ class HostedAgentDefinition(AgentDefinition, discriminator="hosted"):
     ImageBasedHostedAgentDefinition
 
     :ivar rai_config: Configuration for Responsible AI (RAI) content filtering and safety features.
-    :vartype rai_config: ~azure.ai.projects.models.RaiConfig
+    :vartype rai_config: ~azure.ai.projects._generated.models.RaiConfig
     :ivar kind: Required.
-    :vartype kind: str or ~azure.ai.projects.models.HOSTED
+    :vartype kind: str or ~azure.ai.projects._generated.models.HOSTED
     :ivar tools: An array of tools the hosted agent's model may call while generating a response.
      You
      can specify which tool to use by setting the ``tool_choice`` parameter.
-    :vartype tools: list[~azure.ai.projects.models.Tool]
+    :vartype tools: list[~azure.ai.projects._generated.models.Tool]
     :ivar container_protocol_versions: The protocols that the agent supports for ingress
      communication of the containers. Required.
-    :vartype container_protocol_versions: list[~azure.ai.projects.models.ProtocolVersionRecord]
+    :vartype container_protocol_versions:
+     list[~azure.ai.projects._generated.models.ProtocolVersionRecord]
     :ivar cpu: The CPU configuration for the hosted agent. Required.
     :vartype cpu: str
     :ivar memory: The memory configuration for the hosted agent. Required.
@@ -6222,7 +6231,7 @@ class HourlyRecurrenceSchedule(RecurrenceSchedule, discriminator="Hourly"):
     """Hourly recurrence schedule.
 
     :ivar type: Required. Hourly recurrence pattern.
-    :vartype type: str or ~azure.ai.projects.models.HOURLY
+    :vartype type: str or ~azure.ai.projects._generated.models.HOURLY
     """
 
     type: Literal[RecurrenceType.HOURLY] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -6249,7 +6258,7 @@ class HumanEvaluationRuleAction(EvaluationRuleAction, discriminator="humanEvalua
     """Evaluation rule action for human evaluation.
 
     :ivar type: Required. Human evaluation.
-    :vartype type: str or ~azure.ai.projects.models.HUMAN_EVALUATION
+    :vartype type: str or ~azure.ai.projects._generated.models.HUMAN_EVALUATION
     :ivar template_id: Human evaluation template Id. Required.
     :vartype template_id: str
     """
@@ -6282,14 +6291,15 @@ class ImageBasedHostedAgentDefinition(HostedAgentDefinition, discriminator="host
     """The image-based deployment definition for a hosted agent.
 
     :ivar rai_config: Configuration for Responsible AI (RAI) content filtering and safety features.
-    :vartype rai_config: ~azure.ai.projects.models.RaiConfig
+    :vartype rai_config: ~azure.ai.projects._generated.models.RaiConfig
     :ivar tools: An array of tools the hosted agent's model may call while generating a response.
      You
      can specify which tool to use by setting the ``tool_choice`` parameter.
-    :vartype tools: list[~azure.ai.projects.models.Tool]
+    :vartype tools: list[~azure.ai.projects._generated.models.Tool]
     :ivar container_protocol_versions: The protocols that the agent supports for ingress
      communication of the containers. Required.
-    :vartype container_protocol_versions: list[~azure.ai.projects.models.ProtocolVersionRecord]
+    :vartype container_protocol_versions:
+     list[~azure.ai.projects._generated.models.ProtocolVersionRecord]
     :ivar cpu: The CPU configuration for the hosted agent. Required.
     :vartype cpu: str
     :ivar memory: The memory configuration for the hosted agent. Required.
@@ -6297,7 +6307,7 @@ class ImageBasedHostedAgentDefinition(HostedAgentDefinition, discriminator="host
     :ivar environment_variables: Environment variables to set in the hosted agent container.
     :vartype environment_variables: dict[str, str]
     :ivar kind: Required.
-    :vartype kind: str or ~azure.ai.projects.models.HOSTED
+    :vartype kind: str or ~azure.ai.projects._generated.models.HOSTED
     :ivar image: The image for the hosted agent. Required.
     :vartype image: str
     """
@@ -6333,7 +6343,7 @@ class ImageGenTool(Tool, discriminator="image_generation"):
     """A tool that generates images using a model like ``gpt-image-1``.
 
     :ivar type: The type of the image generation tool. Always ``image_generation``. Required.
-    :vartype type: str or ~azure.ai.projects.models.IMAGE_GENERATION
+    :vartype type: str or ~azure.ai.projects._generated.models.IMAGE_GENERATION
     :ivar model: The image generation model to use. Default: ``gpt-image-1``. Default value is
      "gpt-image-1".
     :vartype model: str
@@ -6360,7 +6370,7 @@ class ImageGenTool(Tool, discriminator="image_generation"):
     :vartype background: str or str or str
     :ivar input_image_mask: Optional mask for inpainting. Contains ``image_url``
      (string, optional) and ``file_id`` (string, optional).
-    :vartype input_image_mask: ~azure.ai.projects.models.ImageGenToolInputImageMask
+    :vartype input_image_mask: ~azure.ai.projects._generated.models.ImageGenToolInputImageMask
     :ivar partial_images: Number of partial images to generate in streaming mode, from 0 (default
      value) to 3.
     :vartype partial_images: int
@@ -6440,7 +6450,7 @@ class ImageGenToolCallItemParam(ItemParam, discriminator="image_generation_call"
     """An image generation request made by the model.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.IMAGE_GENERATION_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.IMAGE_GENERATION_CALL
     :ivar result: The generated image encoded in base64. Required.
     :vartype result: str
     """
@@ -6475,9 +6485,9 @@ class ImageGenToolCallItemResource(ItemResource, discriminator="image_generation
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.IMAGE_GENERATION_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.IMAGE_GENERATION_CALL
     :ivar status: Required. Is one of the following types: Literal["in_progress"],
      Literal["completed"], Literal["generating"], Literal["failed"]
     :vartype status: str or str or str or str
@@ -6556,16 +6566,16 @@ class Insight(_Model):
     :ivar id: The unique identifier for the insights report. Required.
     :vartype id: str
     :ivar metadata: Metadata about the insights report. Required.
-    :vartype metadata: ~azure.ai.projects.models.InsightsMetadata
+    :vartype metadata: ~azure.ai.projects._generated.models.InsightsMetadata
     :ivar state: The current state of the insights. Required. Known values are: "NotStarted",
      "Running", "Succeeded", "Failed", and "Canceled".
     :vartype state: str or ~azure.ai.projects.models.OperationState
     :ivar display_name: User friendly display name for the insight. Required.
     :vartype display_name: str
     :ivar request: Request for the insights analysis. Required.
-    :vartype request: ~azure.ai.projects.models.InsightRequest
+    :vartype request: ~azure.ai.projects._generated.models.InsightRequest
     :ivar result: The result of the insights report.
-    :vartype result: ~azure.ai.projects.models.InsightResult
+    :vartype result: ~azure.ai.projects._generated.models.InsightResult
     """
 
     id: str = rest_field(visibility=["read"])
@@ -6616,10 +6626,10 @@ class InsightCluster(_Model):
      cluster. Required.
     :vartype weight: int
     :ivar sub_clusters: List of subclusters within this cluster. Empty if no subclusters exist.
-    :vartype sub_clusters: list[~azure.ai.projects.models.InsightCluster]
+    :vartype sub_clusters: list[~azure.ai.projects._generated.models.InsightCluster]
     :ivar samples: List of samples that belong to this cluster. Empty if samples are part of
      subclusters.
-    :vartype samples: list[~azure.ai.projects.models.InsightSample]
+    :vartype samples: list[~azure.ai.projects._generated.models.InsightSample]
     """
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -6704,9 +6714,9 @@ class InsightScheduleTask(ScheduleTask, discriminator="Insight"):
     :ivar configuration: Configuration for the task.
     :vartype configuration: dict[str, str]
     :ivar type: Required. Insight task.
-    :vartype type: str or ~azure.ai.projects.models.INSIGHT
+    :vartype type: str or ~azure.ai.projects._generated.models.INSIGHT
     :ivar insight: The insight payload. Required.
-    :vartype insight: ~azure.ai.projects.models.Insight
+    :vartype insight: ~azure.ai.projects._generated.models.Insight
     """
 
     type: Literal[ScheduleTaskType.INSIGHT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -6783,7 +6793,7 @@ class InsightSummary(_Model):
     :ivar method: Method used for clustering. Required.
     :vartype method: str
     :ivar usage: Token usage while performing clustering analysis. Required.
-    :vartype usage: ~azure.ai.projects.models.ClusterTokenUsage
+    :vartype usage: ~azure.ai.projects._generated.models.ClusterTokenUsage
     """
 
     sample_count: int = rest_field(name="sampleCount", visibility=["read", "create", "update", "delete", "query"])
@@ -6832,9 +6842,9 @@ class WorkflowActionOutputItemResource(ItemResource, discriminator="workflow_act
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.WORKFLOW_ACTION
+    :vartype type: str or ~azure.ai.projects._generated.models.WORKFLOW_ACTION
     :ivar kind: The kind of CSDL action (e.g., 'SetVariable', 'InvokeAzureAgent'). Required.
      Default value is None.
     :vartype kind: str
@@ -6902,9 +6912,9 @@ class InvokeAzureAgentWorkflowActionOutputItemResource(
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.WORKFLOW_ACTION
+    :vartype type: str or ~azure.ai.projects._generated.models.WORKFLOW_ACTION
     :ivar action_id: Unique identifier for the action. Required.
     :vartype action_id: str
     :ivar parent_action_id: ID of the parent action if this is a nested action.
@@ -6918,7 +6928,7 @@ class InvokeAzureAgentWorkflowActionOutputItemResource(
     :ivar kind: Required. Default value is "InvokeAzureAgent".
     :vartype kind: str
     :ivar agent: Agent id. Required.
-    :vartype agent: ~azure.ai.projects.models.AgentId
+    :vartype agent: ~azure.ai.projects._generated.models.AgentId
     :ivar conversation_id: ID of the conversation for the agent invocation.
     :vartype conversation_id: str
     :ivar response_id: The response id for the agent invocation. Required.
@@ -7001,7 +7011,7 @@ class ItemContentInputAudio(ItemContent, discriminator="input_audio"):
     """An audio input to the model.
 
     :ivar type: The type of the input item. Always ``input_audio``. Required.
-    :vartype type: str or ~azure.ai.projects.models.INPUT_AUDIO
+    :vartype type: str or ~azure.ai.projects._generated.models.INPUT_AUDIO
     :ivar data: Base64-encoded audio data. Required.
     :vartype data: str
     :ivar format: The format of the audio data. Currently supported formats are ``mp3`` and
@@ -7041,7 +7051,7 @@ class ItemContentInputFile(ItemContent, discriminator="input_file"):
     """A file input to the model.
 
     :ivar type: The type of the input item. Always ``input_file``. Required.
-    :vartype type: str or ~azure.ai.projects.models.INPUT_FILE
+    :vartype type: str or ~azure.ai.projects._generated.models.INPUT_FILE
     :ivar file_id: The ID of the file to be sent to the model.
     :vartype file_id: str
     :ivar filename: The name of the file to be sent to the model.
@@ -7084,7 +7094,7 @@ class ItemContentInputImage(ItemContent, discriminator="input_image"):
     """An image input to the model. Learn about `image inputs </docs/guides/vision>`_.
 
     :ivar type: The type of the input item. Always ``input_image``. Required.
-    :vartype type: str or ~azure.ai.projects.models.INPUT_IMAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.INPUT_IMAGE
     :ivar image_url: The URL of the image to be sent to the model. A fully qualified URL or base64
      encoded image in a data URL.
     :vartype image_url: str
@@ -7135,7 +7145,7 @@ class ItemContentInputText(ItemContent, discriminator="input_text"):
     """A text input to the model.
 
     :ivar type: The type of the input item. Always ``input_text``. Required.
-    :vartype type: str or ~azure.ai.projects.models.INPUT_TEXT
+    :vartype type: str or ~azure.ai.projects._generated.models.INPUT_TEXT
     :ivar text: The text input to the model. Required.
     :vartype text: str
     """
@@ -7168,7 +7178,7 @@ class ItemContentOutputAudio(ItemContent, discriminator="output_audio"):
     """An audio output from the model.
 
     :ivar type: The type of the output audio. Always ``output_audio``. Required.
-    :vartype type: str or ~azure.ai.projects.models.OUTPUT_AUDIO
+    :vartype type: str or ~azure.ai.projects._generated.models.OUTPUT_AUDIO
     :ivar data: Base64-encoded audio data from the model. Required.
     :vartype data: str
     :ivar transcript: The transcript of the audio data from the model. Required.
@@ -7206,13 +7216,13 @@ class ItemContentOutputText(ItemContent, discriminator="output_text"):
     """A text output from the model.
 
     :ivar type: The type of the output text. Always ``output_text``. Required.
-    :vartype type: str or ~azure.ai.projects.models.OUTPUT_TEXT
+    :vartype type: str or ~azure.ai.projects._generated.models.OUTPUT_TEXT
     :ivar text: The text output from the model. Required.
     :vartype text: str
     :ivar annotations: The annotations of the text output. Required.
-    :vartype annotations: list[~azure.ai.projects.models.Annotation]
+    :vartype annotations: list[~azure.ai.projects._generated.models.Annotation]
     :ivar logprobs:
-    :vartype logprobs: list[~azure.ai.projects.models.LogProb]
+    :vartype logprobs: list[~azure.ai.projects._generated.models.LogProb]
     """
 
     type: Literal[ItemContentType.OUTPUT_TEXT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -7248,7 +7258,7 @@ class ItemContentRefusal(ItemContent, discriminator="refusal"):
     """A refusal from the model.
 
     :ivar type: The type of the refusal. Always ``refusal``. Required.
-    :vartype type: str or ~azure.ai.projects.models.REFUSAL
+    :vartype type: str or ~azure.ai.projects._generated.models.REFUSAL
     :ivar refusal: The refusal explanationfrom the model. Required.
     :vartype refusal: str
     """
@@ -7281,7 +7291,7 @@ class ItemReferenceItemParam(ItemParam, discriminator="item_reference"):
     """An internal identifier for an item to reference.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.ITEM_REFERENCE
+    :vartype type: str or ~azure.ai.projects._generated.models.ITEM_REFERENCE
     :ivar id: The service-originated ID of the previously generated response item being referenced.
      Required.
     :vartype id: str
@@ -7369,7 +7379,7 @@ class LocalShellTool(Tool, discriminator="local_shell"):
     """A tool that allows the model to execute shell commands in a local environment.
 
     :ivar type: The type of the local shell tool. Always ``local_shell``. Required.
-    :vartype type: str or ~azure.ai.projects.models.LOCAL_SHELL
+    :vartype type: str or ~azure.ai.projects._generated.models.LOCAL_SHELL
     """
 
     type: Literal[ToolType.LOCAL_SHELL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -7396,11 +7406,11 @@ class LocalShellToolCallItemParam(ItemParam, discriminator="local_shell_call"):
     """A tool call to run a command on the local shell.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.LOCAL_SHELL_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.LOCAL_SHELL_CALL
     :ivar call_id: The unique ID of the local shell tool call generated by the model. Required.
     :vartype call_id: str
     :ivar action: Required.
-    :vartype action: ~azure.ai.projects.models.LocalShellExecAction
+    :vartype action: ~azure.ai.projects._generated.models.LocalShellExecAction
     """
 
     type: Literal[ItemType.LOCAL_SHELL_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -7436,16 +7446,16 @@ class LocalShellToolCallItemResource(ItemResource, discriminator="local_shell_ca
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.LOCAL_SHELL_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.LOCAL_SHELL_CALL
     :ivar status: Required. Is one of the following types: Literal["in_progress"],
      Literal["completed"], Literal["incomplete"]
     :vartype status: str or str or str
     :ivar call_id: The unique ID of the local shell tool call generated by the model. Required.
     :vartype call_id: str
     :ivar action: Required.
-    :vartype action: ~azure.ai.projects.models.LocalShellExecAction
+    :vartype action: ~azure.ai.projects._generated.models.LocalShellExecAction
     """
 
     type: Literal[ItemType.LOCAL_SHELL_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -7487,7 +7497,7 @@ class LocalShellToolCallOutputItemParam(ItemParam, discriminator="local_shell_ca
     """The output of a local shell tool call.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.LOCAL_SHELL_CALL_OUTPUT
+    :vartype type: str or ~azure.ai.projects._generated.models.LOCAL_SHELL_CALL_OUTPUT
     :ivar output: A JSON string of the output of the local shell tool call. Required.
     :vartype output: str
     """
@@ -7522,9 +7532,9 @@ class LocalShellToolCallOutputItemResource(ItemResource, discriminator="local_sh
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.LOCAL_SHELL_CALL_OUTPUT
+    :vartype type: str or ~azure.ai.projects._generated.models.LOCAL_SHELL_CALL_OUTPUT
     :ivar status: Required. Is one of the following types: Literal["in_progress"],
      Literal["completed"], Literal["incomplete"]
     :vartype status: str or str or str
@@ -7574,7 +7584,7 @@ class LogProb(_Model):
     :ivar bytes: Required.
     :vartype bytes: list[int]
     :ivar top_logprobs: Required.
-    :vartype top_logprobs: list[~azure.ai.projects.models.TopLogProb]
+    :vartype top_logprobs: list[~azure.ai.projects._generated.models.TopLogProb]
     """
 
     token: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -7621,7 +7631,7 @@ class ManagedAzureAISearchIndex(Index, discriminator="ManagedAzureSearch"):
     :ivar tags: Tag dictionary. Tags can be added, removed, and updated.
     :vartype tags: dict[str, str]
     :ivar type: Type of index. Required. Managed Azure Search
-    :vartype type: str or ~azure.ai.projects.models.MANAGED_AZURE_SEARCH
+    :vartype type: str or ~azure.ai.projects._generated.models.MANAGED_AZURE_SEARCH
     :ivar vector_store_id: Vector store id of managed index. Required.
     :vartype vector_store_id: str
     """
@@ -7656,7 +7666,7 @@ class MCPApprovalRequestItemParam(ItemParam, discriminator="mcp_approval_request
     """A request for human approval of a tool invocation.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.MCP_APPROVAL_REQUEST
+    :vartype type: str or ~azure.ai.projects._generated.models.MCP_APPROVAL_REQUEST
     :ivar server_label: The label of the MCP server making the request. Required.
     :vartype server_label: str
     :ivar name: The name of the tool to run. Required.
@@ -7701,9 +7711,9 @@ class MCPApprovalRequestItemResource(ItemResource, discriminator="mcp_approval_r
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.MCP_APPROVAL_REQUEST
+    :vartype type: str or ~azure.ai.projects._generated.models.MCP_APPROVAL_REQUEST
     :ivar server_label: The label of the MCP server making the request. Required.
     :vartype server_label: str
     :ivar name: The name of the tool to run. Required.
@@ -7748,7 +7758,7 @@ class MCPApprovalResponseItemParam(ItemParam, discriminator="mcp_approval_respon
     """A response to an MCP approval request.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.MCP_APPROVAL_RESPONSE
+    :vartype type: str or ~azure.ai.projects._generated.models.MCP_APPROVAL_RESPONSE
     :ivar approval_request_id: The ID of the approval request being answered. Required.
     :vartype approval_request_id: str
     :ivar approve: Whether the request was approved. Required.
@@ -7793,9 +7803,9 @@ class MCPApprovalResponseItemResource(ItemResource, discriminator="mcp_approval_
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.MCP_APPROVAL_RESPONSE
+    :vartype type: str or ~azure.ai.projects._generated.models.MCP_APPROVAL_RESPONSE
     :ivar approval_request_id: The ID of the approval request being answered. Required.
     :vartype approval_request_id: str
     :ivar approve: Whether the request was approved. Required.
@@ -7840,7 +7850,7 @@ class MCPCallItemParam(ItemParam, discriminator="mcp_call"):
     """An invocation of a tool on an MCP server.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.MCP_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.MCP_CALL
     :ivar server_label: The label of the MCP server running the tool. Required.
     :vartype server_label: str
     :ivar name: The name of the tool that was run. Required.
@@ -7895,9 +7905,9 @@ class MCPCallItemResource(ItemResource, discriminator="mcp_call"):
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.MCP_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.MCP_CALL
     :ivar server_label: The label of the MCP server running the tool. Required.
     :vartype server_label: str
     :ivar name: The name of the tool that was run. Required.
@@ -7952,11 +7962,11 @@ class MCPListToolsItemParam(ItemParam, discriminator="mcp_list_tools"):
     """A list of tools available on an MCP server.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.MCP_LIST_TOOLS
+    :vartype type: str or ~azure.ai.projects._generated.models.MCP_LIST_TOOLS
     :ivar server_label: The label of the MCP server. Required.
     :vartype server_label: str
     :ivar tools: The tools available on the server. Required.
-    :vartype tools: list[~azure.ai.projects.models.MCPListToolsTool]
+    :vartype tools: list[~azure.ai.projects._generated.models.MCPListToolsTool]
     :ivar error: Error message if the server could not list tools.
     :vartype error: str
     """
@@ -7997,13 +8007,13 @@ class MCPListToolsItemResource(ItemResource, discriminator="mcp_list_tools"):
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.MCP_LIST_TOOLS
+    :vartype type: str or ~azure.ai.projects._generated.models.MCP_LIST_TOOLS
     :ivar server_label: The label of the MCP server. Required.
     :vartype server_label: str
     :ivar tools: The tools available on the server. Required.
-    :vartype tools: list[~azure.ai.projects.models.MCPListToolsTool]
+    :vartype tools: list[~azure.ai.projects._generated.models.MCPListToolsTool]
     :ivar error: Error message if the server could not list tools.
     :vartype error: str
     """
@@ -8088,7 +8098,7 @@ class MCPTool(Tool, discriminator="mcp"):
     (MCP) servers. `Learn more about MCP </docs/guides/tools-remote-mcp>`_.
 
     :ivar type: The type of the MCP tool. Always ``mcp``. Required.
-    :vartype type: str or ~azure.ai.projects.models.MCP
+    :vartype type: str or ~azure.ai.projects._generated.models.MCP
     :ivar server_label: A label for this MCP server, used to identify it in tool calls. Required.
     :vartype server_label: str
     :ivar server_url: The URL for the MCP server. Required.
@@ -8098,10 +8108,11 @@ class MCPTool(Tool, discriminator="mcp"):
     :vartype headers: dict[str, str]
     :ivar allowed_tools: List of allowed tool names or a filter object. Is either a [str] type or a
      MCPToolAllowedTools1 type.
-    :vartype allowed_tools: list[str] or ~azure.ai.projects.models.MCPToolAllowedTools1
+    :vartype allowed_tools: list[str] or ~azure.ai.projects._generated.models.MCPToolAllowedTools1
     :ivar require_approval: Specify which of the MCP server's tools require approval. Is one of the
      following types: MCPToolRequireApproval1, Literal["always"], Literal["never"]
-    :vartype require_approval: ~azure.ai.projects.models.MCPToolRequireApproval1 or str or str
+    :vartype require_approval: ~azure.ai.projects._generated.models.MCPToolRequireApproval1 or str
+     or str
     :ivar project_connection_id: The connection ID in the project for the MCP server. The
      connection stores authentication and other connection details needed to connect to the MCP
      server.
@@ -8189,9 +8200,9 @@ class MCPToolRequireApproval1(_Model):
     """MCPToolRequireApproval1.
 
     :ivar always: A list of tools that always require approval.
-    :vartype always: ~azure.ai.projects.models.MCPToolRequireApprovalAlways
+    :vartype always: ~azure.ai.projects._generated.models.MCPToolRequireApprovalAlways
     :ivar never: A list of tools that never require approval.
-    :vartype never: ~azure.ai.projects.models.MCPToolRequireApprovalNever
+    :vartype never: ~azure.ai.projects._generated.models.MCPToolRequireApprovalNever
     """
 
     always: Optional["_models.MCPToolRequireApprovalAlways"] = rest_field(
@@ -8285,7 +8296,7 @@ class MemoryOperation(_Model):
      "update", and "delete".
     :vartype kind: str or ~azure.ai.projects.models.MemoryOperationKind
     :ivar memory_item: The memory item to create, update, or delete. Required.
-    :vartype memory_item: ~azure.ai.projects.models.MemoryItem
+    :vartype memory_item: ~azure.ai.projects._generated.models.MemoryItem
     """
 
     kind: Union[str, "_models.MemoryOperationKind"] = rest_field(
@@ -8319,7 +8330,7 @@ class MemorySearchItem(_Model):
     """A retrieved memory item from memory search.
 
     :ivar memory_item: Retrieved memory item. Required.
-    :vartype memory_item: ~azure.ai.projects.models.MemoryItem
+    :vartype memory_item: ~azure.ai.projects._generated.models.MemoryItem
     """
 
     memory_item: "_models.MemoryItem" = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -8375,7 +8386,7 @@ class MemorySearchTool(Tool, discriminator="memory_search"):
     """A tool for integrating memories into the agent.
 
     :ivar type: The type of the tool. Always ``memory_search``. Required.
-    :vartype type: str or ~azure.ai.projects.models.MEMORY_SEARCH
+    :vartype type: str or ~azure.ai.projects._generated.models.MEMORY_SEARCH
     :ivar memory_store_name: The name of the memory store to use. Required.
     :vartype memory_store_name: str
     :ivar scope: The namespace used to group and isolate memories, such as a user ID.
@@ -8383,7 +8394,7 @@ class MemorySearchTool(Tool, discriminator="memory_search"):
      Use special variable ``{{$userId}}`` to scope memories to the current signed-in user. Required.
     :vartype scope: str
     :ivar search_options: Options for searching the memory store.
-    :vartype search_options: ~azure.ai.projects.models.MemorySearchOptions
+    :vartype search_options: ~azure.ai.projects._generated.models.MemorySearchOptions
     :ivar update_delay: The amount of time to wait after inactivity before updating memories with
      messages from the call (e.g., '0s', '5m'). Defaults to '60s'.
     :vartype update_delay: ~datetime.timedelta
@@ -8431,9 +8442,9 @@ class MemorySearchToolCallItemParam(ItemParam, discriminator="memory_search_call
     """MemorySearchToolCallItemParam.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.MEMORY_SEARCH_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.MEMORY_SEARCH_CALL
     :ivar results: The results returned from the memory search.
-    :vartype results: list[~azure.ai.projects.models.MemorySearchItem]
+    :vartype results: list[~azure.ai.projects._generated.models.MemorySearchItem]
     """
 
     type: Literal[ItemType.MEMORY_SEARCH_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -8468,16 +8479,16 @@ class MemorySearchToolCallItemResource(ItemResource, discriminator="memory_searc
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.MEMORY_SEARCH_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.MEMORY_SEARCH_CALL
     :ivar status: The status of the memory search tool call. One of ``in_progress``,
      ``searching``, ``completed``, ``incomplete`` or ``failed``,. Required. Is one of the following
      types: Literal["in_progress"], Literal["searching"], Literal["completed"],
      Literal["incomplete"], Literal["failed"]
     :vartype status: str or str or str or str or str
     :ivar results: The results returned from the memory search.
-    :vartype results: list[~azure.ai.projects.models.MemorySearchItem]
+    :vartype results: list[~azure.ai.projects._generated.models.MemorySearchItem]
     """
 
     type: Literal[ItemType.MEMORY_SEARCH_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -8552,7 +8563,7 @@ class MemoryStoreDefaultDefinition(MemoryStoreDefinition, discriminator="default
     """Default memory store implementation.
 
     :ivar kind: The kind of the memory store. Required. The default memory store implementation.
-    :vartype kind: str or ~azure.ai.projects.models.DEFAULT
+    :vartype kind: str or ~azure.ai.projects._generated.models.DEFAULT
     :ivar chat_model: The name or identifier of the chat completion model deployment used for
      memory processing. Required.
     :vartype chat_model: str
@@ -8560,7 +8571,7 @@ class MemoryStoreDefaultDefinition(MemoryStoreDefinition, discriminator="default
      processing. Required.
     :vartype embedding_model: str
     :ivar options: Default memory store options.
-    :vartype options: ~azure.ai.projects.models.MemoryStoreDefaultOptions
+    :vartype options: ~azure.ai.projects._generated.models.MemoryStoreDefaultOptions
     """
 
     kind: Literal[MemoryStoreKind.DEFAULT] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -8702,7 +8713,7 @@ class MemoryStoreObject(_Model):
     :ivar metadata: Arbitrary key-value metadata to associate with the memory store.
     :vartype metadata: dict[str, str]
     :ivar definition: The definition of the memory store. Required.
-    :vartype definition: ~azure.ai.projects.models.MemoryStoreDefinition
+    :vartype definition: ~azure.ai.projects._generated.models.MemoryStoreDefinition
     """
 
     object: Literal["memory_store"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -8760,12 +8771,12 @@ class MemoryStoreOperationUsage(_Model):
     :vartype input_tokens: int
     :ivar input_tokens_details: A detailed breakdown of the input tokens. Required.
     :vartype input_tokens_details:
-     ~azure.ai.projects.models.MemoryStoreOperationUsageInputTokensDetails
+     ~azure.ai.projects._generated.models.MemoryStoreOperationUsageInputTokensDetails
     :ivar output_tokens: The number of output tokens. Required.
     :vartype output_tokens: int
     :ivar output_tokens_details: A detailed breakdown of the output tokens. Required.
     :vartype output_tokens_details:
-     ~azure.ai.projects.models.MemoryStoreOperationUsageOutputTokensDetails
+     ~azure.ai.projects._generated.models.MemoryStoreOperationUsageOutputTokensDetails
     :ivar total_tokens: The total number of tokens used. Required.
     :vartype total_tokens: int
     """
@@ -8875,9 +8886,9 @@ class MemoryStoreSearchResponse(_Model):
      subsequent requests to perform incremental searches. Required.
     :vartype search_id: str
     :ivar memories: Related memory items found during the search operation. Required.
-    :vartype memories: list[~azure.ai.projects.models.MemorySearchItem]
+    :vartype memories: list[~azure.ai.projects._generated.models.MemorySearchItem]
     :ivar usage: Usage statistics associated with the memory search operation. Required.
-    :vartype usage: ~azure.ai.projects.models.MemoryStoreOperationUsage
+    :vartype usage: ~azure.ai.projects._generated.models.MemoryStoreOperationUsage
     """
 
     search_id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -8921,9 +8932,9 @@ class MemoryStoreUpdateResponse(_Model):
     :ivar superseded_by: The update_id the operation was superseded by when status is "superseded".
     :vartype superseded_by: str
     :ivar result: The result of memory store update operation when status is "completed".
-    :vartype result: ~azure.ai.projects.models.MemoryStoreUpdateResult
+    :vartype result: ~azure.ai.projects._generated.models.MemoryStoreUpdateResult
     :ivar error: Error object that describes the error when status is "failed".
-    :vartype error: ~azure.ai.projects.models.ApiError
+    :vartype error: ~azure.ai.projects._generated.models.ApiError
     """
 
     update_id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -8971,9 +8982,9 @@ class MemoryStoreUpdateResult(_Model):
 
     :ivar memory_operations: A list of individual memory operations that were performed during the
      update. Required.
-    :vartype memory_operations: list[~azure.ai.projects.models.MemoryOperation]
+    :vartype memory_operations: list[~azure.ai.projects._generated.models.MemoryOperation]
     :ivar usage: Usage statistics associated with the memory update operation. Required.
-    :vartype usage: ~azure.ai.projects.models.MemoryStoreOperationUsage
+    :vartype usage: ~azure.ai.projects._generated.models.MemoryStoreOperationUsage
     """
 
     memory_operations: list["_models.MemoryOperation"] = rest_field(
@@ -9006,9 +9017,10 @@ class MicrosoftFabricAgentTool(Tool, discriminator="fabric_dataagent_preview"):
     """The input definition information for a Microsoft Fabric tool as used to configure an agent.
 
     :ivar type: The object type, which is always 'fabric_dataagent'. Required.
-    :vartype type: str or ~azure.ai.projects.models.FABRIC_DATAAGENT_PREVIEW
+    :vartype type: str or ~azure.ai.projects._generated.models.FABRIC_DATAAGENT_PREVIEW
     :ivar fabric_dataagent_preview: The fabric data agent tool parameters. Required.
-    :vartype fabric_dataagent_preview: ~azure.ai.projects.models.FabricDataAgentToolParameters
+    :vartype fabric_dataagent_preview:
+     ~azure.ai.projects._generated.models.FabricDataAgentToolParameters
     """
 
     type: Literal[ToolType.FABRIC_DATAAGENT_PREVIEW] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -9043,7 +9055,7 @@ class ModelDeployment(Deployment, discriminator="ModelDeployment"):
     :ivar name: Name of the deployment. Required.
     :vartype name: str
     :ivar type: The type of the deployment. Required. Model deployment
-    :vartype type: str or ~azure.ai.projects.models.MODEL_DEPLOYMENT
+    :vartype type: str or ~azure.ai.projects._generated.models.MODEL_DEPLOYMENT
     :ivar model_name: Publisher-specific name of the deployed model. Required.
     :vartype model_name: str
     :ivar model_version: Publisher-specific version of the deployed model. Required.
@@ -9053,7 +9065,7 @@ class ModelDeployment(Deployment, discriminator="ModelDeployment"):
     :ivar capabilities: Capabilities of deployed model. Required.
     :vartype capabilities: dict[str, str]
     :ivar sku: Sku of the model deployment. Required.
-    :vartype sku: ~azure.ai.projects.models.ModelDeploymentSku
+    :vartype sku: ~azure.ai.projects._generated.models.ModelDeploymentSku
     :ivar connection_name: Name of the connection the deployment comes from.
     :vartype connection_name: str
     """
@@ -9142,7 +9154,7 @@ class MonthlyRecurrenceSchedule(RecurrenceSchedule, discriminator="Monthly"):
     """Monthly recurrence schedule.
 
     :ivar type: Monthly recurrence type. Required. Monthly recurrence pattern.
-    :vartype type: str or ~azure.ai.projects.models.MONTHLY
+    :vartype type: str or ~azure.ai.projects._generated.models.MONTHLY
     :ivar days_of_month: Days of the month for the recurrence schedule. Required.
     :vartype days_of_month: list[int]
     """
@@ -9177,7 +9189,7 @@ class NoAuthenticationCredentials(BaseCredentials, discriminator="None"):
     """Credentials that do not require authentication.
 
     :ivar type: The credential type. Required. No credential
-    :vartype type: str or ~azure.ai.projects.models.NONE
+    :vartype type: str or ~azure.ai.projects._generated.models.NONE
     """
 
     type: Literal[CredentialType.NONE] = rest_discriminator(name="type", visibility=["read"])  # type: ignore
@@ -9204,11 +9216,11 @@ class OAuthConsentRequestItemResource(ItemResource, discriminator="oauth_consent
     """Request from the service for the user to perform OAuth consent.
 
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar id: Required.
     :vartype id: str
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.OAUTH_CONSENT_REQUEST
+    :vartype type: str or ~azure.ai.projects._generated.models.OAUTH_CONSENT_REQUEST
     :ivar consent_link: The link the user can use to perform OAuth consent. Required.
     :vartype consent_link: str
     :ivar server_label: The server label for the OAuth consent request. Required.
@@ -9248,7 +9260,7 @@ class OneTimeTrigger(Trigger, discriminator="OneTime"):
     """One-time trigger.
 
     :ivar type: Required. One-time trigger.
-    :vartype type: str or ~azure.ai.projects.models.ONE_TIME
+    :vartype type: str or ~azure.ai.projects._generated.models.ONE_TIME
     :ivar trigger_at: Date and time for the one-time trigger in ISO 8601 format. Required.
     :vartype trigger_at: str
     :ivar time_zone: Time zone for the one-time trigger.
@@ -9286,9 +9298,9 @@ class OpenApiAgentTool(Tool, discriminator="openapi"):
     """The input definition information for an OpenAPI tool as used to configure an agent.
 
     :ivar type: The object type, which is always 'openapi'. Required.
-    :vartype type: str or ~azure.ai.projects.models.OPENAPI
+    :vartype type: str or ~azure.ai.projects._generated.models.OPENAPI
     :ivar openapi: The openapi function definition. Required.
-    :vartype openapi: ~azure.ai.projects.models.OpenApiFunctionDefinition
+    :vartype openapi: ~azure.ai.projects._generated.models.OpenApiFunctionDefinition
     """
 
     type: Literal[ToolType.OPENAPI] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -9355,7 +9367,7 @@ class OpenApiAnonymousAuthDetails(OpenApiAuthDetails, discriminator="anonymous")
     """Security details for OpenApi anonymous authentication.
 
     :ivar type: The object type, which is always 'anonymous'. Required.
-    :vartype type: str or ~azure.ai.projects.models.ANONYMOUS
+    :vartype type: str or ~azure.ai.projects._generated.models.ANONYMOUS
     """
 
     type: Literal[OpenApiAuthType.ANONYMOUS] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -9389,11 +9401,12 @@ class OpenApiFunctionDefinition(_Model):
     :ivar spec: The openapi function shape, described as a JSON Schema object. Required.
     :vartype spec: any
     :ivar auth: Open API authentication details. Required.
-    :vartype auth: ~azure.ai.projects.models.OpenApiAuthDetails
+    :vartype auth: ~azure.ai.projects._generated.models.OpenApiAuthDetails
     :ivar default_params: List of OpenAPI spec parameters that will use user-provided defaults.
     :vartype default_params: list[str]
     :ivar functions: List of function definitions used by OpenApi tool.
-    :vartype functions: list[~azure.ai.projects.models.OpenApiFunctionDefinitionFunction]
+    :vartype functions:
+     list[~azure.ai.projects._generated.models.OpenApiFunctionDefinitionFunction]
     """
 
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -9480,9 +9493,9 @@ class OpenApiManagedAuthDetails(OpenApiAuthDetails, discriminator="managed_ident
     """Security details for OpenApi managed_identity authentication.
 
     :ivar type: The object type, which is always 'managed_identity'. Required.
-    :vartype type: str or ~azure.ai.projects.models.MANAGED_IDENTITY
+    :vartype type: str or ~azure.ai.projects._generated.models.MANAGED_IDENTITY
     :ivar security_scheme: Connection auth security details. Required.
-    :vartype security_scheme: ~azure.ai.projects.models.OpenApiManagedSecurityScheme
+    :vartype security_scheme: ~azure.ai.projects._generated.models.OpenApiManagedSecurityScheme
     """
 
     type: Literal[OpenApiAuthType.MANAGED_IDENTITY] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -9543,9 +9556,10 @@ class OpenApiProjectConnectionAuthDetails(OpenApiAuthDetails, discriminator="pro
     """Security details for OpenApi project connection authentication.
 
     :ivar type: The object type, which is always 'project_connection'. Required.
-    :vartype type: str or ~azure.ai.projects.models.PROJECT_CONNECTION
+    :vartype type: str or ~azure.ai.projects._generated.models.PROJECT_CONNECTION
     :ivar security_scheme: Project connection auth security details. Required.
-    :vartype security_scheme: ~azure.ai.projects.models.OpenApiProjectConnectionSecurityScheme
+    :vartype security_scheme:
+     ~azure.ai.projects._generated.models.OpenApiProjectConnectionSecurityScheme
     """
 
     type: Literal[OpenApiAuthType.PROJECT_CONNECTION] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -9606,7 +9620,7 @@ class PagedScheduleRun(_Model):
     """Paged collection of ScheduleRun items.
 
     :ivar value: The ScheduleRun items on this page. Required.
-    :vartype value: list[~azure.ai.projects.models.ScheduleRun]
+    :vartype value: list[~azure.ai.projects._generated.models.ScheduleRun]
     :ivar next_link: The link to the next page of items.
     :vartype next_link: str
     """
@@ -9645,7 +9659,7 @@ class PendingUploadRequest(_Model):
     :vartype connection_name: str
     :ivar pending_upload_type: BlobReference is the only supported type. Required. Blob Reference
      is the only supported type.
-    :vartype pending_upload_type: str or ~azure.ai.projects.models.BLOB_REFERENCE
+    :vartype pending_upload_type: str or ~azure.ai.projects._generated.models.BLOB_REFERENCE
     """
 
     pending_upload_id: Optional[str] = rest_field(
@@ -9685,7 +9699,7 @@ class PendingUploadResponse(_Model):
     """Represents the response for a pending upload request.
 
     :ivar blob_reference: Container-level read, write, list SAS. Required.
-    :vartype blob_reference: ~azure.ai.projects.models.BlobReference
+    :vartype blob_reference: ~azure.ai.projects._generated.models.BlobReference
     :ivar pending_upload_id: ID for this upload request. Required.
     :vartype pending_upload_id: str
     :ivar version: Version of asset to be created if user did not specify version when initially
@@ -9693,7 +9707,7 @@ class PendingUploadResponse(_Model):
     :vartype version: str
     :ivar pending_upload_type: BlobReference is the only supported type. Required. Blob Reference
      is the only supported type.
-    :vartype pending_upload_type: str or ~azure.ai.projects.models.BLOB_REFERENCE
+    :vartype pending_upload_type: str or ~azure.ai.projects._generated.models.BLOB_REFERENCE
     """
 
     blob_reference: "_models.BlobReference" = rest_field(
@@ -9741,7 +9755,7 @@ class Prompt(_Model):
     :ivar version: Optional version of the prompt template.
     :vartype version: str
     :ivar variables:
-    :vartype variables: ~azure.ai.projects.models.ResponsePromptVariables
+    :vartype variables: ~azure.ai.projects._generated.models.ResponsePromptVariables
     """
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -9776,9 +9790,9 @@ class PromptAgentDefinition(AgentDefinition, discriminator="prompt"):
     """The prompt agent definition.
 
     :ivar rai_config: Configuration for Responsible AI (RAI) content filtering and safety features.
-    :vartype rai_config: ~azure.ai.projects.models.RaiConfig
+    :vartype rai_config: ~azure.ai.projects._generated.models.RaiConfig
     :ivar kind: Required.
-    :vartype kind: str or ~azure.ai.projects.models.PROMPT
+    :vartype kind: str or ~azure.ai.projects._generated.models.PROMPT
     :ivar model: The model deployment to use for this agent. Required.
     :vartype model: str
     :ivar instructions: A system (or developer) message inserted into the model's context.
@@ -9796,16 +9810,17 @@ class PromptAgentDefinition(AgentDefinition, discriminator="prompt"):
      We generally recommend altering this or ``temperature`` but not both.
     :vartype top_p: float
     :ivar reasoning:
-    :vartype reasoning: ~azure.ai.projects.models.Reasoning
+    :vartype reasoning: ~azure.ai.projects._generated.models.Reasoning
     :ivar tools: An array of tools the model may call while generating a response. You
      can specify which tool to use by setting the ``tool_choice`` parameter.
-    :vartype tools: list[~azure.ai.projects.models.Tool]
+    :vartype tools: list[~azure.ai.projects._generated.models.Tool]
     :ivar text: Configuration options for a text response from the model. Can be plain text or
      structured JSON data.
-    :vartype text: ~azure.ai.projects.models.PromptAgentDefinitionText
+    :vartype text: ~azure.ai.projects._generated.models.PromptAgentDefinitionText
     :ivar structured_inputs: Set of structured inputs that can participate in prompt template
      substitution or tool argument bindings.
-    :vartype structured_inputs: dict[str, ~azure.ai.projects.models.StructuredInputDefinition]
+    :vartype structured_inputs: dict[str,
+     ~azure.ai.projects._generated.models.StructuredInputDefinition]
     """
 
     kind: Literal[AgentKind.PROMPT] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -9871,7 +9886,7 @@ class PromptAgentDefinitionText(_Model):
     """PromptAgentDefinitionText.
 
     :ivar format:
-    :vartype format: ~azure.ai.projects.models.ResponseTextFormatConfiguration
+    :vartype format: ~azure.ai.projects._generated.models.ResponseTextFormatConfiguration
     """
 
     format: Optional["_models.ResponseTextFormatConfiguration"] = rest_field(
@@ -9906,9 +9921,9 @@ class PromptBasedEvaluatorDefinition(EvaluatorDefinition, discriminator="prompt"
      includes parameters like type, properties, required.
     :vartype data_schema: any
     :ivar metrics: List of output metrics produced by this evaluator.
-    :vartype metrics: dict[str, ~azure.ai.projects.models.EvaluatorMetric]
+    :vartype metrics: dict[str, ~azure.ai.projects._generated.models.EvaluatorMetric]
     :ivar type: Required. Prompt-based definition
-    :vartype type: str or ~azure.ai.projects.models.PROMPT
+    :vartype type: str or ~azure.ai.projects._generated.models.PROMPT
     :ivar prompt_text: The prompt text used for evaluation. Required.
     :vartype prompt_text: str
     """
@@ -10058,9 +10073,9 @@ class Reasoning(_Model):
      Literal["concise"], Literal["detailed"]
     :vartype summary: str or str or str
     :ivar generate_summary: **Deprecated:** use ``summary`` instead. A summary of the reasoning
-    performed by the model. This can be useful for debugging and understanding the model's
-    reasoning process. One of ``auto``, ``concise``, or ``detailed``. Is one of the following
-    types: Literal["auto"], Literal["concise"], Literal["detailed"]
+     performed by the model. This can be useful for debugging and understanding the model's
+     reasoning process. One of ``auto``, ``concise``, or ``detailed``. Is one of the following
+     types: Literal["auto"], Literal["concise"], Literal["detailed"]
     :vartype generate_summary: str or str or str
     """
 
@@ -10110,13 +10125,13 @@ class ReasoningItemParam(ItemParam, discriminator="reasoning"):
     `managing context </docs/guides/conversation-state>`_.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.REASONING
+    :vartype type: str or ~azure.ai.projects._generated.models.REASONING
     :ivar encrypted_content: The encrypted content of the reasoning item - populated when a
      response is
      generated with ``reasoning.encrypted_content`` in the ``include`` parameter.
     :vartype encrypted_content: str
     :ivar summary: Reasoning text contents. Required.
-    :vartype summary: list[~azure.ai.projects.models.ReasoningItemSummaryPart]
+    :vartype summary: list[~azure.ai.projects._generated.models.ReasoningItemSummaryPart]
     """
 
     type: Literal[ItemType.REASONING] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -10158,15 +10173,15 @@ class ReasoningItemResource(ItemResource, discriminator="reasoning"):
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.REASONING
+    :vartype type: str or ~azure.ai.projects._generated.models.REASONING
     :ivar encrypted_content: The encrypted content of the reasoning item - populated when a
      response is
      generated with ``reasoning.encrypted_content`` in the ``include`` parameter.
     :vartype encrypted_content: str
     :ivar summary: Reasoning text contents. Required.
-    :vartype summary: list[~azure.ai.projects.models.ReasoningItemSummaryPart]
+    :vartype summary: list[~azure.ai.projects._generated.models.ReasoningItemSummaryPart]
     """
 
     type: Literal[ItemType.REASONING] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -10237,7 +10252,7 @@ class ReasoningItemSummaryTextPart(ReasoningItemSummaryPart, discriminator="summ
     """ReasoningItemSummaryTextPart.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.SUMMARY_TEXT
+    :vartype type: str or ~azure.ai.projects._generated.models.SUMMARY_TEXT
     :ivar text: Required.
     :vartype text: str
     """
@@ -10270,7 +10285,7 @@ class RecurrenceTrigger(Trigger, discriminator="Recurrence"):
     """Recurrence based trigger.
 
     :ivar type: Type of the trigger. Required. Recurrence based trigger.
-    :vartype type: str or ~azure.ai.projects.models.RECURRENCE
+    :vartype type: str or ~azure.ai.projects._generated.models.RECURRENCE
     :ivar start_time: Start time for the recurrence schedule in ISO 8601 format.
     :vartype start_time: str
     :ivar end_time: End time for the recurrence schedule in ISO 8601 format.
@@ -10280,7 +10295,7 @@ class RecurrenceTrigger(Trigger, discriminator="Recurrence"):
     :ivar interval: Interval for the recurrence schedule. Required.
     :vartype interval: int
     :ivar schedule: Recurrence schedule for the recurrence trigger. Required.
-    :vartype schedule: ~azure.ai.projects.models.RecurrenceSchedule
+    :vartype schedule: ~azure.ai.projects._generated.models.RecurrenceSchedule
     """
 
     type: Literal[TriggerType.RECURRENCE] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -10346,7 +10361,7 @@ class RedTeam(_Model):
     :ivar status: Status of the red-team. It is set by service and is read-only.
     :vartype status: str
     :ivar target: Target configuration for the red-team run. Required.
-    :vartype target: ~azure.ai.projects.models.TargetConfig
+    :vartype target: ~azure.ai.projects._generated.models.TargetConfig
     """
 
     name: str = rest_field(name="id", visibility=["read"])
@@ -10448,7 +10463,7 @@ class Response(_Model):
         :ivar model: The model deployment to use for the creation of this response.
         :vartype model: str
         :ivar reasoning:
-        :vartype reasoning: ~azure.ai.projects.models.Reasoning
+        :vartype reasoning: ~azure.ai.projects._generated.models.Reasoning
         :ivar background: Whether to run the model response in the background.
          `Learn more </docs/guides/background>`_.
         :vartype background: bool
@@ -10462,7 +10477,7 @@ class Response(_Model):
         :ivar text: Configuration options for a text response from the model. Can be plain
          text or structured JSON data. See `Text inputs and outputs </docs/guides/text>`_
          and `Structured Outputs </docs/guides/structured-outputs>`_.
-        :vartype text: ~azure.ai.projects.models.ResponseText
+        :vartype text: ~azure.ai.projects._generated.models.ResponseText
         :ivar tools: An array of tools the model may call while generating a response. You
     can specify which tool to use by setting the ``tool_choice`` parameter.
 
@@ -10477,15 +10492,15 @@ class Response(_Model):
          * **Function calls (custom tools)**: Functions that are defined by you,
     enabling the model to call your own code. Learn more about
     [function calling](/docs/guides/function-calling).
-        :vartype tools: list[~azure.ai.projects.models.Tool]
+        :vartype tools: list[~azure.ai.projects._generated.models.Tool]
         :ivar tool_choice: How the model should select which tool (or tools) to use when generating
          a response. See the ``tools`` parameter to see how to specify which tools
          the model can call. Is either a Union[str, "_models.ToolChoiceOptions"] type or a
          ToolChoiceObject type.
         :vartype tool_choice: str or ~azure.ai.projects.models.ToolChoiceOptions or
-         ~azure.ai.projects.models.ToolChoiceObject
+         ~azure.ai.projects._generated.models.ToolChoiceObject
         :ivar prompt:
-        :vartype prompt: ~azure.ai.projects.models.Prompt
+        :vartype prompt: ~azure.ai.projects._generated.models.Prompt
         :ivar truncation: The truncation strategy to use for the model response.
 
          * `auto`: If the context of this response and previous ones exceeds
@@ -10509,9 +10524,9 @@ class Response(_Model):
         :ivar created_at: Unix timestamp (in seconds) of when this Response was created. Required.
         :vartype created_at: ~datetime.datetime
         :ivar error: Required.
-        :vartype error: ~azure.ai.projects.models.ResponseError
+        :vartype error: ~azure.ai.projects._generated.models.ResponseError
         :ivar incomplete_details: Details about why the response is incomplete. Required.
-        :vartype incomplete_details: ~azure.ai.projects.models.ResponseIncompleteDetails1
+        :vartype incomplete_details: ~azure.ai.projects._generated.models.ResponseIncompleteDetails1
         :ivar output: An array of content items generated by the model.
 
 
@@ -10522,26 +10537,26 @@ class Response(_Model):
     assuming it's an `assistant` message with the content generated by
     the model, you might consider using the `output_text` property where
     supported in SDKs. Required.
-        :vartype output: list[~azure.ai.projects.models.ItemResource]
+        :vartype output: list[~azure.ai.projects._generated.models.ItemResource]
         :ivar instructions: A system (or developer) message inserted into the model's context.
 
          When using along with ``previous_response_id``, the instructions from a previous
          response will not be carried over to the next response. This makes it simple
          to swap out system (or developer) messages in new responses. Required. Is either a str type or
          a [ItemParam] type.
-        :vartype instructions: str or list[~azure.ai.projects.models.ItemParam]
+        :vartype instructions: str or list[~azure.ai.projects._generated.models.ItemParam]
         :ivar output_text: SDK-only convenience property that contains the aggregated text output
          from all ``output_text`` items in the ``output`` array, if any are present.
          Supported in the Python and JavaScript SDKs.
         :vartype output_text: str
         :ivar usage:
-        :vartype usage: ~azure.ai.projects.models.ResponseUsage
+        :vartype usage: ~azure.ai.projects._generated.models.ResponseUsage
         :ivar parallel_tool_calls: Whether to allow the model to run tool calls in parallel. Required.
         :vartype parallel_tool_calls: bool
         :ivar conversation: Required.
-        :vartype conversation: ~azure.ai.projects.models.ResponseConversation1
+        :vartype conversation: ~azure.ai.projects._generated.models.ResponseConversation1
         :ivar agent: The agent used for this response.
-        :vartype agent: ~azure.ai.projects.models.AgentId
+        :vartype agent: ~azure.ai.projects._generated.models.AgentId
         :ivar structured_inputs: The structured inputs to the response that can participate in prompt
          template substitution or tool argument bindings.
         :vartype structured_inputs: dict[str, any]
@@ -10851,7 +10866,8 @@ class ResponseCodeInterpreterCallCodeDeltaEvent(
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.code_interpreter_call_code.delta``.
      Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_CODE_INTERPRETER_CALL_CODE_DELTA
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_CODE_INTERPRETER_CALL_CODE_DELTA
     :ivar output_index: The index of the output item in the response for which the code is being
      streamed. Required.
     :vartype output_index: int
@@ -10901,7 +10917,8 @@ class ResponseCodeInterpreterCallCodeDoneEvent(
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.code_interpreter_call_code.done``.
      Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_CODE_INTERPRETER_CALL_CODE_DONE
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_CODE_INTERPRETER_CALL_CODE_DONE
     :ivar output_index: The index of the output item in the response for which the code is
      finalized. Required.
     :vartype output_index: int
@@ -10951,7 +10968,8 @@ class ResponseCodeInterpreterCallCompletedEvent(
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.code_interpreter_call.completed``.
      Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_CODE_INTERPRETER_CALL_COMPLETED
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_CODE_INTERPRETER_CALL_COMPLETED
     :ivar output_index: The index of the output item in the response for which the code interpreter
      call is completed. Required.
     :vartype output_index: int
@@ -10997,7 +11015,8 @@ class ResponseCodeInterpreterCallInProgressEvent(
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.code_interpreter_call.in_progress``.
      Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_CODE_INTERPRETER_CALL_IN_PROGRESS
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_CODE_INTERPRETER_CALL_IN_PROGRESS
     :ivar output_index: The index of the output item in the response for which the code interpreter
      call is in progress. Required.
     :vartype output_index: int
@@ -11043,7 +11062,8 @@ class ResponseCodeInterpreterCallInterpretingEvent(
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.code_interpreter_call.interpreting``.
      Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_CODE_INTERPRETER_CALL_INTERPRETING
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_CODE_INTERPRETER_CALL_INTERPRETING
     :ivar output_index: The index of the output item in the response for which the code interpreter
      is interpreting code. Required.
     :vartype output_index: int
@@ -11086,9 +11106,9 @@ class ResponseCompletedEvent(ResponseStreamEvent, discriminator="response.comple
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.completed``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_COMPLETED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_COMPLETED
     :ivar response: Properties of the completed response. Required.
-    :vartype response: ~azure.ai.projects.models.Response
+    :vartype response: ~azure.ai.projects._generated.models.Response
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_COMPLETED] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -11122,7 +11142,7 @@ class ResponseContentPartAddedEvent(ResponseStreamEvent, discriminator="response
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.content_part.added``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_CONTENT_PART_ADDED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_CONTENT_PART_ADDED
     :ivar item_id: The ID of the output item that the content part was added to. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item that the content part was added to. Required.
@@ -11130,7 +11150,7 @@ class ResponseContentPartAddedEvent(ResponseStreamEvent, discriminator="response
     :ivar content_index: The index of the content part that was added. Required.
     :vartype content_index: int
     :ivar part: The content part that was added. Required.
-    :vartype part: ~azure.ai.projects.models.ItemContent
+    :vartype part: ~azure.ai.projects._generated.models.ItemContent
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_CONTENT_PART_ADDED] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -11173,7 +11193,7 @@ class ResponseContentPartDoneEvent(ResponseStreamEvent, discriminator="response.
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.content_part.done``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_CONTENT_PART_DONE
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_CONTENT_PART_DONE
     :ivar item_id: The ID of the output item that the content part was added to. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item that the content part was added to. Required.
@@ -11181,7 +11201,7 @@ class ResponseContentPartDoneEvent(ResponseStreamEvent, discriminator="response.
     :ivar content_index: The index of the content part that is done. Required.
     :vartype content_index: int
     :ivar part: The content part that is done. Required.
-    :vartype part: ~azure.ai.projects.models.ItemContent
+    :vartype part: ~azure.ai.projects._generated.models.ItemContent
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_CONTENT_PART_DONE] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -11252,9 +11272,9 @@ class ResponseCreatedEvent(ResponseStreamEvent, discriminator="response.created"
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.created``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_CREATED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_CREATED
     :ivar response: The response that was created. Required.
-    :vartype response: ~azure.ai.projects.models.Response
+    :vartype response: ~azure.ai.projects._generated.models.Response
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_CREATED] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -11333,7 +11353,7 @@ class ResponseErrorEvent(ResponseStreamEvent, discriminator="error"):
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``error``. Required.
-    :vartype type: str or ~azure.ai.projects.models.ERROR
+    :vartype type: str or ~azure.ai.projects._generated.models.ERROR
     :ivar code: The error code. Required.
     :vartype code: str
     :ivar message: The error message. Required.
@@ -11379,9 +11399,9 @@ class ResponseFailedEvent(ResponseStreamEvent, discriminator="response.failed"):
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.failed``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_FAILED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_FAILED
     :ivar response: The response that failed. Required.
-    :vartype response: ~azure.ai.projects.models.Response
+    :vartype response: ~azure.ai.projects._generated.models.Response
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_FAILED] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -11415,7 +11435,7 @@ class ResponseFileSearchCallCompletedEvent(ResponseStreamEvent, discriminator="r
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.file_search_call.completed``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_FILE_SEARCH_CALL_COMPLETED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_FILE_SEARCH_CALL_COMPLETED
     :ivar output_index: The index of the output item that the file search call is initiated.
      Required.
     :vartype output_index: int
@@ -11457,7 +11477,8 @@ class ResponseFileSearchCallInProgressEvent(ResponseStreamEvent, discriminator="
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.file_search_call.in_progress``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_FILE_SEARCH_CALL_IN_PROGRESS
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_FILE_SEARCH_CALL_IN_PROGRESS
     :ivar output_index: The index of the output item that the file search call is initiated.
      Required.
     :vartype output_index: int
@@ -11499,7 +11520,7 @@ class ResponseFileSearchCallSearchingEvent(ResponseStreamEvent, discriminator="r
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.file_search_call.searching``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_FILE_SEARCH_CALL_SEARCHING
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_FILE_SEARCH_CALL_SEARCHING
     :ivar output_index: The index of the output item that the file search call is searching.
      Required.
     :vartype output_index: int
@@ -11550,7 +11571,8 @@ class ResponseFunctionCallArgumentsDeltaEvent(
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.function_call_arguments.delta``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_FUNCTION_CALL_ARGUMENTS_DELTA
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_FUNCTION_CALL_ARGUMENTS_DELTA
     :ivar item_id: The ID of the output item that the function-call arguments delta is added to.
      Required.
     :vartype item_id: str
@@ -11600,7 +11622,8 @@ class ResponseFunctionCallArgumentsDoneEvent(
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_FUNCTION_CALL_ARGUMENTS_DONE
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_FUNCTION_CALL_ARGUMENTS_DONE
     :ivar item_id: The ID of the item. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item. Required.
@@ -11646,7 +11669,8 @@ class ResponseImageGenCallCompletedEvent(ResponseStreamEvent, discriminator="res
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.image_generation_call.completed'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_IMAGE_GENERATION_CALL_COMPLETED
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_IMAGE_GENERATION_CALL_COMPLETED
     :ivar output_index: The index of the output item in the response's output array. Required.
     :vartype output_index: int
     :ivar item_id: The unique identifier of the image generation item being processed. Required.
@@ -11691,7 +11715,8 @@ class ResponseImageGenCallGeneratingEvent(
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.image_generation_call.generating'.
      Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_IMAGE_GENERATION_CALL_GENERATING
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_IMAGE_GENERATION_CALL_GENERATING
     :ivar output_index: The index of the output item in the response's output array. Required.
     :vartype output_index: int
     :ivar item_id: The unique identifier of the image generation item being processed. Required.
@@ -11735,7 +11760,8 @@ class ResponseImageGenCallInProgressEvent(
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.image_generation_call.in_progress'.
      Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_IMAGE_GENERATION_CALL_IN_PROGRESS
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_IMAGE_GENERATION_CALL_IN_PROGRESS
     :ivar output_index: The index of the output item in the response's output array. Required.
     :vartype output_index: int
     :ivar item_id: The unique identifier of the image generation item being processed. Required.
@@ -11779,7 +11805,8 @@ class ResponseImageGenCallPartialImageEvent(
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.image_generation_call.partial_image'.
      Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_IMAGE_GENERATION_CALL_PARTIAL_IMAGE
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_IMAGE_GENERATION_CALL_PARTIAL_IMAGE
     :ivar output_index: The index of the output item in the response's output array. Required.
     :vartype output_index: int
     :ivar item_id: The unique identifier of the image generation item being processed. Required.
@@ -11865,9 +11892,9 @@ class ResponseIncompleteEvent(ResponseStreamEvent, discriminator="response.incom
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.incomplete``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_INCOMPLETE
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_INCOMPLETE
     :ivar response: The response that was incomplete. Required.
-    :vartype response: ~azure.ai.projects.models.Response
+    :vartype response: ~azure.ai.projects._generated.models.Response
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_INCOMPLETE] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -11901,9 +11928,9 @@ class ResponseInProgressEvent(ResponseStreamEvent, discriminator="response.in_pr
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.in_progress``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_IN_PROGRESS
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_IN_PROGRESS
     :ivar response: The response that is in progress. Required.
-    :vartype response: ~azure.ai.projects.models.Response
+    :vartype response: ~azure.ai.projects._generated.models.Response
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_IN_PROGRESS] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -11937,7 +11964,7 @@ class ResponseMCPCallArgumentsDeltaEvent(ResponseStreamEvent, discriminator="res
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.mcp_call.arguments_delta'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_MCP_CALL_ARGUMENTS_DELTA
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_MCP_CALL_ARGUMENTS_DELTA
     :ivar output_index: The index of the output item in the response's output array. Required.
     :vartype output_index: int
     :ivar item_id: The unique identifier of the MCP tool call item being processed. Required.
@@ -11983,7 +12010,7 @@ class ResponseMCPCallArgumentsDoneEvent(ResponseStreamEvent, discriminator="resp
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.mcp_call.arguments_done'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_MCP_CALL_ARGUMENTS_DONE
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_MCP_CALL_ARGUMENTS_DONE
     :ivar output_index: The index of the output item in the response's output array. Required.
     :vartype output_index: int
     :ivar item_id: The unique identifier of the MCP tool call item being processed. Required.
@@ -12029,7 +12056,7 @@ class ResponseMCPCallCompletedEvent(ResponseStreamEvent, discriminator="response
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.mcp_call.completed'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_MCP_CALL_COMPLETED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_MCP_CALL_COMPLETED
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_MCP_CALL_COMPLETED] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -12060,7 +12087,7 @@ class ResponseMCPCallFailedEvent(ResponseStreamEvent, discriminator="response.mc
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.mcp_call.failed'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_MCP_CALL_FAILED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_MCP_CALL_FAILED
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_MCP_CALL_FAILED] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -12091,7 +12118,7 @@ class ResponseMCPCallInProgressEvent(ResponseStreamEvent, discriminator="respons
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.mcp_call.in_progress'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_MCP_CALL_IN_PROGRESS
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_MCP_CALL_IN_PROGRESS
     :ivar output_index: The index of the output item in the response's output array. Required.
     :vartype output_index: int
     :ivar item_id: The unique identifier of the MCP tool call item being processed. Required.
@@ -12132,7 +12159,7 @@ class ResponseMCPListToolsCompletedEvent(ResponseStreamEvent, discriminator="res
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.mcp_list_tools.completed'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_MCP_LIST_TOOLS_COMPLETED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_MCP_LIST_TOOLS_COMPLETED
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_MCP_LIST_TOOLS_COMPLETED] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -12163,7 +12190,7 @@ class ResponseMCPListToolsFailedEvent(ResponseStreamEvent, discriminator="respon
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.mcp_list_tools.failed'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_MCP_LIST_TOOLS_FAILED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_MCP_LIST_TOOLS_FAILED
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_MCP_LIST_TOOLS_FAILED] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -12194,7 +12221,7 @@ class ResponseMCPListToolsInProgressEvent(ResponseStreamEvent, discriminator="re
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.mcp_list_tools.in_progress'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_MCP_LIST_TOOLS_IN_PROGRESS
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_MCP_LIST_TOOLS_IN_PROGRESS
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_MCP_LIST_TOOLS_IN_PROGRESS] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -12225,11 +12252,11 @@ class ResponseOutputItemAddedEvent(ResponseStreamEvent, discriminator="response.
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.output_item.added``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_OUTPUT_ITEM_ADDED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_OUTPUT_ITEM_ADDED
     :ivar output_index: The index of the output item that was added. Required.
     :vartype output_index: int
     :ivar item: The output item that was added. Required.
-    :vartype item: ~azure.ai.projects.models.ItemResource
+    :vartype item: ~azure.ai.projects._generated.models.ItemResource
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_OUTPUT_ITEM_ADDED] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -12266,11 +12293,11 @@ class ResponseOutputItemDoneEvent(ResponseStreamEvent, discriminator="response.o
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.output_item.done``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_OUTPUT_ITEM_DONE
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_OUTPUT_ITEM_DONE
     :ivar output_index: The index of the output item that was marked done. Required.
     :vartype output_index: int
     :ivar item: The output item that was marked done. Required.
-    :vartype item: ~azure.ai.projects.models.ItemResource
+    :vartype item: ~azure.ai.projects._generated.models.ItemResource
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_OUTPUT_ITEM_DONE] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -12315,9 +12342,9 @@ class ResponseQueuedEvent(ResponseStreamEvent, discriminator="response.queued"):
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.queued'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_QUEUED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_QUEUED
     :ivar response: The full response object that is queued. Required.
-    :vartype response: ~azure.ai.projects.models.Response
+    :vartype response: ~azure.ai.projects._generated.models.Response
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_QUEUED] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -12351,7 +12378,7 @@ class ResponseReasoningDeltaEvent(ResponseStreamEvent, discriminator="response.r
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.reasoning.delta'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_REASONING_DELTA
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_REASONING_DELTA
     :ivar item_id: The unique identifier of the item for which reasoning is being updated.
      Required.
     :vartype item_id: str
@@ -12403,7 +12430,7 @@ class ResponseReasoningDoneEvent(ResponseStreamEvent, discriminator="response.re
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.reasoning.done'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_REASONING_DONE
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_REASONING_DONE
     :ivar item_id: The unique identifier of the item for which reasoning is finalized. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item in the response's output array. Required.
@@ -12454,7 +12481,7 @@ class ResponseReasoningSummaryDeltaEvent(ResponseStreamEvent, discriminator="res
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.reasoning_summary.delta'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_REASONING_SUMMARY_DELTA
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_REASONING_SUMMARY_DELTA
     :ivar item_id: The unique identifier of the item for which the reasoning summary is being
      updated. Required.
     :vartype item_id: str
@@ -12506,7 +12533,7 @@ class ResponseReasoningSummaryDoneEvent(ResponseStreamEvent, discriminator="resp
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always 'response.reasoning_summary.done'. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_REASONING_SUMMARY_DONE
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_REASONING_SUMMARY_DONE
     :ivar item_id: The unique identifier of the item for which the reasoning summary is finalized.
      Required.
     :vartype item_id: str
@@ -12560,7 +12587,8 @@ class ResponseReasoningSummaryPartAddedEvent(
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.reasoning_summary_part.added``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_REASONING_SUMMARY_PART_ADDED
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_REASONING_SUMMARY_PART_ADDED
     :ivar item_id: The ID of the item this summary part is associated with. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item this summary part is associated with.
@@ -12569,7 +12597,7 @@ class ResponseReasoningSummaryPartAddedEvent(
     :ivar summary_index: The index of the summary part within the reasoning summary. Required.
     :vartype summary_index: int
     :ivar part: The summary part that was added. Required.
-    :vartype part: ~azure.ai.projects.models.ReasoningItemSummaryPart
+    :vartype part: ~azure.ai.projects._generated.models.ReasoningItemSummaryPart
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_REASONING_SUMMARY_PART_ADDED] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -12612,7 +12640,7 @@ class ResponseReasoningSummaryPartDoneEvent(ResponseStreamEvent, discriminator="
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.reasoning_summary_part.done``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_REASONING_SUMMARY_PART_DONE
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_REASONING_SUMMARY_PART_DONE
     :ivar item_id: The ID of the item this summary part is associated with. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item this summary part is associated with.
@@ -12621,7 +12649,7 @@ class ResponseReasoningSummaryPartDoneEvent(ResponseStreamEvent, discriminator="
     :ivar summary_index: The index of the summary part within the reasoning summary. Required.
     :vartype summary_index: int
     :ivar part: The completed summary part. Required.
-    :vartype part: ~azure.ai.projects.models.ReasoningItemSummaryPart
+    :vartype part: ~azure.ai.projects._generated.models.ReasoningItemSummaryPart
     """
 
     type: Literal[ResponseStreamEventType.RESPONSE_REASONING_SUMMARY_PART_DONE] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -12666,7 +12694,8 @@ class ResponseReasoningSummaryTextDeltaEvent(
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.reasoning_summary_text.delta``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_REASONING_SUMMARY_TEXT_DELTA
+    :vartype type: str or
+     ~azure.ai.projects._generated.models.RESPONSE_REASONING_SUMMARY_TEXT_DELTA
     :ivar item_id: The ID of the item this summary text delta is associated with. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item this summary text delta is associated with.
@@ -12718,7 +12747,7 @@ class ResponseReasoningSummaryTextDoneEvent(ResponseStreamEvent, discriminator="
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.reasoning_summary_text.done``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_REASONING_SUMMARY_TEXT_DONE
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_REASONING_SUMMARY_TEXT_DONE
     :ivar item_id: The ID of the item this summary text is associated with. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item this summary text is associated with.
@@ -12770,7 +12799,7 @@ class ResponseRefusalDeltaEvent(ResponseStreamEvent, discriminator="response.ref
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.refusal.delta``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_REFUSAL_DELTA
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_REFUSAL_DELTA
     :ivar item_id: The ID of the output item that the refusal text is added to. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item that the refusal text is added to. Required.
@@ -12821,7 +12850,7 @@ class ResponseRefusalDoneEvent(ResponseStreamEvent, discriminator="response.refu
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.refusal.done``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_REFUSAL_DONE
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_REFUSAL_DONE
     :ivar item_id: The ID of the output item that the refusal text is finalized. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item that the refusal text is finalized. Required.
@@ -12876,7 +12905,7 @@ class ResponsesMessageItemParam(ItemParam, discriminator="message"):
     ResponsesSystemMessageItemParam, ResponsesUserMessageItemParam
 
     :ivar type: The type of the responses item, which is always 'message'. Required.
-    :vartype type: str or ~azure.ai.projects.models.MESSAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.MESSAGE
     :ivar role: The role associated with the message. Required. Known values are: "system",
      "developer", "user", and "assistant".
     :vartype role: str or ~azure.ai.projects.models.ResponsesMessageRole
@@ -12912,12 +12941,12 @@ class ResponsesAssistantMessageItemParam(ResponsesMessageItemParam, discriminato
     """A message parameter item with the ``assistant`` role.
 
     :ivar type: The type of the responses item, which is always 'message'. Required.
-    :vartype type: str or ~azure.ai.projects.models.MESSAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.MESSAGE
     :ivar role: The role of the message, which is always ``assistant``. Required.
-    :vartype role: str or ~azure.ai.projects.models.ASSISTANT
+    :vartype role: str or ~azure.ai.projects._generated.models.ASSISTANT
     :ivar content: The content associated with the message. Required. Is either a str type or a
      [ItemContent] type.
-    :vartype content: str or list[~azure.ai.projects.models.ItemContent]
+    :vartype content: str or list[~azure.ai.projects._generated.models.ItemContent]
     """
 
     __mapping__: dict[str, _Model] = {}
@@ -12959,9 +12988,9 @@ class ResponsesMessageItemResource(ItemResource, discriminator="message"):
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: The type of the responses item, which is always 'message'. Required.
-    :vartype type: str or ~azure.ai.projects.models.MESSAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.MESSAGE
     :ivar status: The status of the item. One of ``in_progress``, ``completed``, or
      ``incomplete``. Populated when items are returned via API. Required. Is one of the following
      types: Literal["in_progress"], Literal["completed"], Literal["incomplete"]
@@ -13012,17 +13041,17 @@ class ResponsesAssistantMessageItemResource(ResponsesMessageItemResource, discri
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: The type of the responses item, which is always 'message'. Required.
-    :vartype type: str or ~azure.ai.projects.models.MESSAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.MESSAGE
     :ivar status: The status of the item. One of ``in_progress``, ``completed``, or
      ``incomplete``. Populated when items are returned via API. Required. Is one of the following
      types: Literal["in_progress"], Literal["completed"], Literal["incomplete"]
     :vartype status: str or str or str
     :ivar role: The role of the message, which is always ``assistant``. Required.
-    :vartype role: str or ~azure.ai.projects.models.ASSISTANT
+    :vartype role: str or ~azure.ai.projects._generated.models.ASSISTANT
     :ivar content: The content associated with the message. Required.
-    :vartype content: list[~azure.ai.projects.models.ItemContent]
+    :vartype content: list[~azure.ai.projects._generated.models.ItemContent]
     """
 
     __mapping__: dict[str, _Model] = {}
@@ -13057,12 +13086,12 @@ class ResponsesDeveloperMessageItemParam(ResponsesMessageItemParam, discriminato
     """A message parameter item with the ``developer`` role.
 
     :ivar type: The type of the responses item, which is always 'message'. Required.
-    :vartype type: str or ~azure.ai.projects.models.MESSAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.MESSAGE
     :ivar role: The role of the message, which is always ``developer``. Required.
-    :vartype role: str or ~azure.ai.projects.models.DEVELOPER
+    :vartype role: str or ~azure.ai.projects._generated.models.DEVELOPER
     :ivar content: The content associated with the message. Required. Is either a str type or a
      [ItemContent] type.
-    :vartype content: str or list[~azure.ai.projects.models.ItemContent]
+    :vartype content: str or list[~azure.ai.projects._generated.models.ItemContent]
     """
 
     __mapping__: dict[str, _Model] = {}
@@ -13099,17 +13128,17 @@ class ResponsesDeveloperMessageItemResource(ResponsesMessageItemResource, discri
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: The type of the responses item, which is always 'message'. Required.
-    :vartype type: str or ~azure.ai.projects.models.MESSAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.MESSAGE
     :ivar status: The status of the item. One of ``in_progress``, ``completed``, or
      ``incomplete``. Populated when items are returned via API. Required. Is one of the following
      types: Literal["in_progress"], Literal["completed"], Literal["incomplete"]
     :vartype status: str or str or str
     :ivar role: The role of the message, which is always ``developer``. Required.
-    :vartype role: str or ~azure.ai.projects.models.DEVELOPER
+    :vartype role: str or ~azure.ai.projects._generated.models.DEVELOPER
     :ivar content: The content associated with the message. Required.
-    :vartype content: list[~azure.ai.projects.models.ItemContent]
+    :vartype content: list[~azure.ai.projects._generated.models.ItemContent]
     """
 
     __mapping__: dict[str, _Model] = {}
@@ -13144,12 +13173,12 @@ class ResponsesSystemMessageItemParam(ResponsesMessageItemParam, discriminator="
     """A message parameter item with the ``system`` role.
 
     :ivar type: The type of the responses item, which is always 'message'. Required.
-    :vartype type: str or ~azure.ai.projects.models.MESSAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.MESSAGE
     :ivar role: The role of the message, which is always ``system``. Required.
-    :vartype role: str or ~azure.ai.projects.models.SYSTEM
+    :vartype role: str or ~azure.ai.projects._generated.models.SYSTEM
     :ivar content: The content associated with the message. Required. Is either a str type or a
      [ItemContent] type.
-    :vartype content: str or list[~azure.ai.projects.models.ItemContent]
+    :vartype content: str or list[~azure.ai.projects._generated.models.ItemContent]
     """
 
     __mapping__: dict[str, _Model] = {}
@@ -13186,17 +13215,17 @@ class ResponsesSystemMessageItemResource(ResponsesMessageItemResource, discrimin
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: The type of the responses item, which is always 'message'. Required.
-    :vartype type: str or ~azure.ai.projects.models.MESSAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.MESSAGE
     :ivar status: The status of the item. One of ``in_progress``, ``completed``, or
      ``incomplete``. Populated when items are returned via API. Required. Is one of the following
      types: Literal["in_progress"], Literal["completed"], Literal["incomplete"]
     :vartype status: str or str or str
     :ivar role: The role of the message, which is always ``system``. Required.
-    :vartype role: str or ~azure.ai.projects.models.SYSTEM
+    :vartype role: str or ~azure.ai.projects._generated.models.SYSTEM
     :ivar content: The content associated with the message. Required.
-    :vartype content: list[~azure.ai.projects.models.ItemContent]
+    :vartype content: list[~azure.ai.projects._generated.models.ItemContent]
     """
 
     __mapping__: dict[str, _Model] = {}
@@ -13231,12 +13260,12 @@ class ResponsesUserMessageItemParam(ResponsesMessageItemParam, discriminator="us
     """A message parameter item with the ``user`` role.
 
     :ivar type: The type of the responses item, which is always 'message'. Required.
-    :vartype type: str or ~azure.ai.projects.models.MESSAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.MESSAGE
     :ivar role: The role of the message, which is always ``user``. Required.
-    :vartype role: str or ~azure.ai.projects.models.USER
+    :vartype role: str or ~azure.ai.projects._generated.models.USER
     :ivar content: The content associated with the message. Required. Is either a str type or a
      [ItemContent] type.
-    :vartype content: str or list[~azure.ai.projects.models.ItemContent]
+    :vartype content: str or list[~azure.ai.projects._generated.models.ItemContent]
     """
 
     __mapping__: dict[str, _Model] = {}
@@ -13273,17 +13302,17 @@ class ResponsesUserMessageItemResource(ResponsesMessageItemResource, discriminat
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: The type of the responses item, which is always 'message'. Required.
-    :vartype type: str or ~azure.ai.projects.models.MESSAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.MESSAGE
     :ivar status: The status of the item. One of ``in_progress``, ``completed``, or
      ``incomplete``. Populated when items are returned via API. Required. Is one of the following
      types: Literal["in_progress"], Literal["completed"], Literal["incomplete"]
     :vartype status: str or str or str
     :ivar role: The role of the message, which is always ``user``. Required.
-    :vartype role: str or ~azure.ai.projects.models.USER
+    :vartype role: str or ~azure.ai.projects._generated.models.USER
     :ivar content: The content associated with the message. Required.
-    :vartype content: list[~azure.ai.projects.models.ItemContent]
+    :vartype content: list[~azure.ai.projects._generated.models.ItemContent]
     """
 
     __mapping__: dict[str, _Model] = {}
@@ -13318,7 +13347,7 @@ class ResponseText(_Model):
     """ResponseText.
 
     :ivar format:
-    :vartype format: ~azure.ai.projects.models.ResponseTextFormatConfiguration
+    :vartype format: ~azure.ai.projects._generated.models.ResponseTextFormatConfiguration
     """
 
     format: Optional["_models.ResponseTextFormatConfiguration"] = rest_field(
@@ -13349,7 +13378,7 @@ class ResponseTextDeltaEvent(ResponseStreamEvent, discriminator="response.output
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.output_text.delta``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_OUTPUT_TEXT_DELTA
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_OUTPUT_TEXT_DELTA
     :ivar item_id: The ID of the output item that the text delta was added to. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item that the text delta was added to. Required.
@@ -13400,7 +13429,7 @@ class ResponseTextDoneEvent(ResponseStreamEvent, discriminator="response.output_
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.output_text.done``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_OUTPUT_TEXT_DONE
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_OUTPUT_TEXT_DONE
     :ivar item_id: The ID of the output item that the text content is finalized. Required.
     :vartype item_id: str
     :ivar output_index: The index of the output item that the text content is finalized. Required.
@@ -13485,7 +13514,7 @@ class ResponseTextFormatConfigurationJsonObject(
     """ResponseTextFormatConfigurationJsonObject.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.JSON_OBJECT
+    :vartype type: str or ~azure.ai.projects._generated.models.JSON_OBJECT
     """
 
     type: Literal[ResponseTextFormatConfigurationType.JSON_OBJECT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -13515,7 +13544,7 @@ class ResponseTextFormatConfigurationJsonSchema(
     Learn more about `Structured Outputs </docs/guides/structured-outputs>`_.
 
     :ivar type: The type of response format being defined. Always ``json_schema``. Required.
-    :vartype type: str or ~azure.ai.projects.models.JSON_SCHEMA
+    :vartype type: str or ~azure.ai.projects._generated.models.JSON_SCHEMA
     :ivar description: A description of what the response format is for, used by the model to
      determine how to respond in the format.
     :vartype description: str
@@ -13523,7 +13552,7 @@ class ResponseTextFormatConfigurationJsonSchema(
      underscores and dashes, with a maximum length of 64. Required.
     :vartype name: str
     :ivar schema: Required.
-    :vartype schema: ~azure.ai.projects.models.ResponseFormatJsonSchemaSchema
+    :vartype schema: ~azure.ai.projects._generated.models.ResponseFormatJsonSchemaSchema
     :ivar strict: Whether to enable strict schema adherence when generating the output.
      If set to true, the model will always follow the exact schema defined
      in the ``schema`` field. Only a subset of JSON Schema is supported when
@@ -13577,7 +13606,7 @@ class ResponseTextFormatConfigurationText(ResponseTextFormatConfiguration, discr
     """ResponseTextFormatConfigurationText.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.TEXT
+    :vartype type: str or ~azure.ai.projects._generated.models.TEXT
     """
 
     type: Literal[ResponseTextFormatConfigurationType.TEXT] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -13608,12 +13637,12 @@ class ResponseUsage(_Model):
     :vartype input_tokens: int
     :ivar input_tokens_details: A detailed breakdown of the input tokens. Required.
     :vartype input_tokens_details:
-     ~azure.ai.projects.models.MemoryStoreOperationUsageInputTokensDetails
+     ~azure.ai.projects._generated.models.MemoryStoreOperationUsageInputTokensDetails
     :ivar output_tokens: The number of output tokens. Required.
     :vartype output_tokens: int
     :ivar output_tokens_details: A detailed breakdown of the output tokens. Required.
     :vartype output_tokens_details:
-     ~azure.ai.projects.models.MemoryStoreOperationUsageOutputTokensDetails
+     ~azure.ai.projects._generated.models.MemoryStoreOperationUsageOutputTokensDetails
     :ivar total_tokens: The total number of tokens used. Required.
     :vartype total_tokens: int
     """
@@ -13661,7 +13690,7 @@ class ResponseWebSearchCallCompletedEvent(ResponseStreamEvent, discriminator="re
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.web_search_call.completed``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_WEB_SEARCH_CALL_COMPLETED
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_WEB_SEARCH_CALL_COMPLETED
     :ivar output_index: The index of the output item that the web search call is associated with.
      Required.
     :vartype output_index: int
@@ -13703,7 +13732,7 @@ class ResponseWebSearchCallInProgressEvent(ResponseStreamEvent, discriminator="r
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.web_search_call.in_progress``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_WEB_SEARCH_CALL_IN_PROGRESS
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_WEB_SEARCH_CALL_IN_PROGRESS
     :ivar output_index: The index of the output item that the web search call is associated with.
      Required.
     :vartype output_index: int
@@ -13745,7 +13774,7 @@ class ResponseWebSearchCallSearchingEvent(ResponseStreamEvent, discriminator="re
     :ivar sequence_number: The sequence number for this event. Required.
     :vartype sequence_number: int
     :ivar type: The type of the event. Always ``response.web_search_call.searching``. Required.
-    :vartype type: str or ~azure.ai.projects.models.RESPONSE_WEB_SEARCH_CALL_SEARCHING
+    :vartype type: str or ~azure.ai.projects._generated.models.RESPONSE_WEB_SEARCH_CALL_SEARCHING
     :ivar output_index: The index of the output item that the web search call is associated with.
      Required.
     :vartype output_index: int
@@ -13785,7 +13814,7 @@ class SASCredentials(BaseCredentials, discriminator="SAS"):
     """Shared Access Signature (SAS) credential definition.
 
     :ivar type: The credential type. Required. Shared Access Signature (SAS) credential
-    :vartype type: str or ~azure.ai.projects.models.SAS
+    :vartype type: str or ~azure.ai.projects._generated.models.SAS
     :ivar sas_token: SAS token.
     :vartype sas_token: str
     """
@@ -13827,9 +13856,9 @@ class Schedule(_Model):
      "Updating", "Deleting", "Succeeded", and "Failed".
     :vartype provisioning_status: str or ~azure.ai.projects.models.ScheduleProvisioningStatus
     :ivar trigger: Trigger for the schedule. Required.
-    :vartype trigger: ~azure.ai.projects.models.Trigger
+    :vartype trigger: ~azure.ai.projects._generated.models.Trigger
     :ivar task: Task for the schedule. Required.
-    :vartype task: ~azure.ai.projects.models.ScheduleTask
+    :vartype task: ~azure.ai.projects._generated.models.ScheduleTask
     :ivar tags: Schedule's tags. Unlike properties, tags are fully mutable.
     :vartype tags: dict[str, str]
     :ivar properties: Schedule's properties. Unlike tags, properties are add-only. Once added, a
@@ -13945,10 +13974,10 @@ class SharepointAgentTool(Tool, discriminator="sharepoint_grounding_preview"):
     """The input definition information for a sharepoint tool as used to configure an agent.
 
     :ivar type: The object type, which is always 'sharepoint_grounding'. Required.
-    :vartype type: str or ~azure.ai.projects.models.SHAREPOINT_GROUNDING_PREVIEW
+    :vartype type: str or ~azure.ai.projects._generated.models.SHAREPOINT_GROUNDING_PREVIEW
     :ivar sharepoint_grounding_preview: The sharepoint grounding tool parameters. Required.
     :vartype sharepoint_grounding_preview:
-     ~azure.ai.projects.models.SharepointGroundingToolParameters
+     ~azure.ai.projects._generated.models.SharepointGroundingToolParameters
     """
 
     type: Literal[ToolType.SHAREPOINT_GROUNDING_PREVIEW] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -13983,7 +14012,7 @@ class SharepointGroundingToolParameters(_Model):
     :ivar project_connections: The project connections attached to this tool. There can be a
      maximum of 1 connection
      resource attached to the tool.
-    :vartype project_connections: list[~azure.ai.projects.models.ToolProjectConnection]
+    :vartype project_connections: list[~azure.ai.projects._generated.models.ToolProjectConnection]
     """
 
     project_connections: Optional[list["_models.ToolProjectConnection"]] = rest_field(
@@ -14020,7 +14049,7 @@ class StructuredInputDefinition(_Model):
     :vartype default_value: any
     :ivar tool_argument_bindings: When provided, the input value is bound to the specified tool
      arguments.
-    :vartype tool_argument_bindings: list[~azure.ai.projects.models.ToolArgumentBinding]
+    :vartype tool_argument_bindings: list[~azure.ai.projects._generated.models.ToolArgumentBinding]
     :ivar schema: The JSON schema for the structured input (optional).
     :vartype schema: any
     :ivar required: Whether the input property is required when the agent is invoked.
@@ -14113,9 +14142,9 @@ class StructuredOutputsItemResource(ItemResource, discriminator="structured_outp
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.STRUCTURED_OUTPUTS
+    :vartype type: str or ~azure.ai.projects._generated.models.STRUCTURED_OUTPUTS
     :ivar output: The structured output captured during the response. Required.
     :vartype output: any
     """
@@ -14161,7 +14190,7 @@ class TaxonomyCategory(_Model):
      "TaskAdherence".
     :vartype risk_category: str or ~azure.ai.projects.models.RiskCategory
     :ivar sub_categories: List of taxonomy sub categories. Required.
-    :vartype sub_categories: list[~azure.ai.projects.models.TaxonomySubCategory]
+    :vartype sub_categories: list[~azure.ai.projects._generated.models.TaxonomySubCategory]
     :ivar properties: Additional properties for the taxonomy category.
     :vartype properties: dict[str, str]
     """
@@ -14332,7 +14361,7 @@ class ToolChoiceObjectCodeInterpreter(ToolChoiceObject, discriminator="code_inte
     """ToolChoiceObjectCodeInterpreter.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.CODE_INTERPRETER
+    :vartype type: str or ~azure.ai.projects._generated.models.CODE_INTERPRETER
     """
 
     type: Literal[ToolChoiceObjectType.CODE_INTERPRETER] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -14359,7 +14388,7 @@ class ToolChoiceObjectComputer(ToolChoiceObject, discriminator="computer_use_pre
     """ToolChoiceObjectComputer.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.COMPUTER
+    :vartype type: str or ~azure.ai.projects._generated.models.COMPUTER
     """
 
     type: Literal[ToolChoiceObjectType.COMPUTER] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -14386,7 +14415,7 @@ class ToolChoiceObjectFileSearch(ToolChoiceObject, discriminator="file_search"):
     """ToolChoiceObjectFileSearch.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.FILE_SEARCH
+    :vartype type: str or ~azure.ai.projects._generated.models.FILE_SEARCH
     """
 
     type: Literal[ToolChoiceObjectType.FILE_SEARCH] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -14413,7 +14442,7 @@ class ToolChoiceObjectFunction(ToolChoiceObject, discriminator="function"):
     """Use this option to force the model to call a specific function.
 
     :ivar type: For function calling, the type is always ``function``. Required.
-    :vartype type: str or ~azure.ai.projects.models.FUNCTION
+    :vartype type: str or ~azure.ai.projects._generated.models.FUNCTION
     :ivar name: The name of the function to call. Required.
     :vartype name: str
     """
@@ -14446,7 +14475,7 @@ class ToolChoiceObjectImageGen(ToolChoiceObject, discriminator="image_generation
     """ToolChoiceObjectImageGen.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.IMAGE_GENERATION
+    :vartype type: str or ~azure.ai.projects._generated.models.IMAGE_GENERATION
     """
 
     type: Literal[ToolChoiceObjectType.IMAGE_GENERATION] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -14473,7 +14502,7 @@ class ToolChoiceObjectMCP(ToolChoiceObject, discriminator="mcp"):
     """Use this option to force the model to call a specific tool on a remote MCP server.
 
     :ivar type: For MCP tools, the type is always ``mcp``. Required.
-    :vartype type: str or ~azure.ai.projects.models.MCP
+    :vartype type: str or ~azure.ai.projects._generated.models.MCP
     :ivar server_label: The label of the MCP server to use. Required.
     :vartype server_label: str
     :ivar name: The name of the tool to call on the server.
@@ -14511,7 +14540,7 @@ class ToolChoiceObjectWebSearch(ToolChoiceObject, discriminator="web_search_prev
     """Note: web_search is not yet available via Azure OpenAI.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.WEB_SEARCH
+    :vartype type: str or ~azure.ai.projects._generated.models.WEB_SEARCH
     """
 
     type: Literal[ToolChoiceObjectType.WEB_SEARCH] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -14649,7 +14678,7 @@ class UserProfileMemoryItem(MemoryItem, discriminator="user_profile"):
     :vartype content: str
     :ivar kind: The kind of the memory item. Required. User profile information extracted from
      conversations.
-    :vartype kind: str or ~azure.ai.projects.models.USER_PROFILE
+    :vartype kind: str or ~azure.ai.projects._generated.models.USER_PROFILE
     """
 
     kind: Literal[MemoryItemKind.USER_PROFILE] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -14723,7 +14752,7 @@ class WebSearchActionFind(WebSearchAction, discriminator="find"):
     """Action type "find": Searches for a pattern within a loaded page.
 
     :ivar type: The action type. Required.
-    :vartype type: str or ~azure.ai.projects.models.FIND
+    :vartype type: str or ~azure.ai.projects._generated.models.FIND
     :ivar url: The URL of the page searched for the pattern. Required.
     :vartype url: str
     :ivar pattern: The pattern or text to search for within the page. Required.
@@ -14761,7 +14790,7 @@ class WebSearchActionOpenPage(WebSearchAction, discriminator="open_page"):
     """Action type "open_page" - Opens a specific URL from search results.
 
     :ivar type: The action type. Required.
-    :vartype type: str or ~azure.ai.projects.models.OPEN_PAGE
+    :vartype type: str or ~azure.ai.projects._generated.models.OPEN_PAGE
     :ivar url: The URL opened by the model. Required.
     :vartype url: str
     """
@@ -14794,7 +14823,7 @@ class WebSearchActionSearch(WebSearchAction, discriminator="search"):
     """Action type "search" - Performs a web search query.
 
     :ivar type: The action type. Required.
-    :vartype type: str or ~azure.ai.projects.models.SEARCH
+    :vartype type: str or ~azure.ai.projects._generated.models.SEARCH
     :ivar query: The search query. Required.
     :vartype query: str
     """
@@ -14828,9 +14857,9 @@ class WebSearchPreviewTool(Tool, discriminator="web_search_preview"):
 
     :ivar type: The type of the web search tool. One of ``web_search_preview`` or
      ``web_search_preview_2025_03_11``. Required.
-    :vartype type: str or ~azure.ai.projects.models.WEB_SEARCH_PREVIEW
+    :vartype type: str or ~azure.ai.projects._generated.models.WEB_SEARCH_PREVIEW
     :ivar user_location: The user's location.
-    :vartype user_location: ~azure.ai.projects.models.Location
+    :vartype user_location: ~azure.ai.projects._generated.models.Location
     :ivar search_context_size: High level guidance for the amount of context window space to use
      for the search. One of ``low``, ``medium``, or ``high``. ``medium`` is the default. Is one of
      the following types: Literal["low"], Literal["medium"], Literal["high"]
@@ -14874,10 +14903,10 @@ class WebSearchToolCallItemParam(ItemParam, discriminator="web_search_call"):
     `web search guide </docs/guides/tools-web-search>`_ for more information.
 
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.WEB_SEARCH_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.WEB_SEARCH_CALL
     :ivar action: An object describing the specific action taken in this web search call.
      Includes details on how the model used the web (search, open_page, find). Required.
-    :vartype action: ~azure.ai.projects.models.WebSearchAction
+    :vartype action: ~azure.ai.projects._generated.models.WebSearchAction
     """
 
     type: Literal[ItemType.WEB_SEARCH_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -14912,15 +14941,15 @@ class WebSearchToolCallItemResource(ItemResource, discriminator="web_search_call
     :ivar id: Required.
     :vartype id: str
     :ivar created_by: The information about the creator of the item.
-    :vartype created_by: ~azure.ai.projects.models.CreatedBy
+    :vartype created_by: ~azure.ai.projects._generated.models.CreatedBy
     :ivar type: Required.
-    :vartype type: str or ~azure.ai.projects.models.WEB_SEARCH_CALL
+    :vartype type: str or ~azure.ai.projects._generated.models.WEB_SEARCH_CALL
     :ivar status: The status of the web search tool call. Required. Is one of the following types:
      Literal["in_progress"], Literal["searching"], Literal["completed"], Literal["failed"]
     :vartype status: str or str or str or str
     :ivar action: An object describing the specific action taken in this web search call.
      Includes details on how the model used the web (search, open_page, find). Required.
-    :vartype action: ~azure.ai.projects.models.WebSearchAction
+    :vartype action: ~azure.ai.projects._generated.models.WebSearchAction
     """
 
     type: Literal[ItemType.WEB_SEARCH_CALL] = rest_discriminator(name="type", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
@@ -14960,7 +14989,7 @@ class WeeklyRecurrenceSchedule(RecurrenceSchedule, discriminator="Weekly"):
     """Weekly recurrence schedule.
 
     :ivar type: Weekly recurrence type. Required. Weekly recurrence pattern.
-    :vartype type: str or ~azure.ai.projects.models.WEEKLY
+    :vartype type: str or ~azure.ai.projects._generated.models.WEEKLY
     :ivar days_of_week: Days of the week for the recurrence schedule. Required.
     :vartype days_of_week: list[str or ~azure.ai.projects.models.DayOfWeek]
     """
@@ -14995,9 +15024,9 @@ class WorkflowDefinition(AgentDefinition, discriminator="workflow"):
     """The workflow specification in CSDL format.
 
     :ivar rai_config: Configuration for Responsible AI (RAI) content filtering and safety features.
-    :vartype rai_config: ~azure.ai.projects.models.RaiConfig
+    :vartype rai_config: ~azure.ai.projects._generated.models.RaiConfig
     :ivar kind: Required.
-    :vartype kind: str or ~azure.ai.projects.models.WORKFLOW
+    :vartype kind: str or ~azure.ai.projects._generated.models.WORKFLOW
     :ivar workflow: The CSDL YAML definition of the workflow.
     :vartype workflow: str
     """

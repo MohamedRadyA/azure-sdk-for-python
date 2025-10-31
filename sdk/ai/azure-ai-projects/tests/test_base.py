@@ -28,7 +28,7 @@ from azure.ai.projects.models import (
     ResponsesMessageRole,
     ItemContentType,
 )
-from azure.ai.projects.models._models import AgentObject, AgentVersionObject
+from azure.ai.projects._generated.models._models import AgentObject, AgentVersionObject
 from devtools_testutils import AzureRecordedTestCase, EnvironmentVariableLoader, is_live_and_not_recording
 from azure.ai.projects import AIProjectClient as AIProjectClient
 from azure.ai.projects.aio import AIProjectClient as AsyncAIProjectClient
