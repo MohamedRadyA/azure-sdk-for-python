@@ -2060,7 +2060,7 @@ class ChatCompletionSchema(_serialization.Model):
         self.type = type
         self.properties = properties
         self.required = required
-        self.additional_properties = additional_properties
+        self.additional_properties = additional_properties  # type: ignore[assignment]
 
 
 class WebApiSkill(SearchIndexerSkill):
